@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sara &amp; Roberto - 4 de Julio 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            /* Primitive Color Tokens */
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-teal-800: rgba(41, 150, 161, 1);
+            --color-red-400: rgba(255, 84, 89, 1);
+            --color-red-500: rgba(192, 21, 47, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+
+            /* RGB versions for opacity control */
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-slate-500-rgb: 98, 108, 113;
+            --color-red-500-rgb: 192, 21, 47;
+            --color-red-400-rgb: 255, 84, 89;
+            --color-orange-500-rgb: 168, 75, 47;
+            --color-orange-400-rgb: 230, 129, 97;
+
+            /* Background color tokens (Light Mode) */
+            --color-bg-1: rgba(59, 130, 246, 0.08);
+            --color-bg-2: rgba(245, 158, 11, 0.08);
+            --color-bg-3: rgba(34, 197, 94, 0.08);
+            --color-bg-4: rgba(239, 68, 68, 0.08);
+            --color-bg-5: rgba(147, 51, 234, 0.08);
+            --color-bg-6: rgba(249, 115, 22, 0.08);
+            --color-bg-7: rgba(236, 72, 153, 0.08);
+            --color-bg-8: rgba(6, 182, 212, 0.08);
+
+            /* Semantic Color Tokens (Light Mode) */
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-btn-primary-text: var(--color-cream-50);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-error: var(--color-red-500);
+            --color-success: var(--color-teal-500);
+            --color-warning: var(--color-orange-500);
+            --color-info: var(--color-slate-500);
+            --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+            --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+            /* Typography */
+            --font-family-base: "Crimson Text", "Times New Roman", serif;
+            --font-family-display: "Playfair Display", "Times New Roman", serif;
+            --font-size-xs: 11px;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-md: 16px;
+            --font-size-lg: 18px;
+            --font-size-xl: 20px;
+            --font-size-2xl: 24px;
+            --font-size-3xl: 30px;
+            --font-size-4xl: 36px;
+            --font-size-5xl: 48px;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+            --letter-spacing-tight: -0.01em;
+
+            /* Spacing */
+            --space-4: 4px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --space-40: 40px;
+            --space-48: 48px;
+            --space-64: 64px;
+
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-md: 10px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+
+            /* Custom wedding colors */
+            --color-rose-light: #f8f4f2;
+            --color-rose-medium: #e8d5d0;
+            --color-gold: #d4af37;
+            --color-ivory: #fef9f3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            line-height: var(--line-height-normal);
+            color: var(--color-text);
+            background-color: var(--color-ivory);
+            font-size: var(--font-size-md);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-20);
+        }
+
+        /* Header & Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--color-rose-light) 0%, var(--color-ivory) 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: var(--space-40) var(--space-20);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(232, 213, 208, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .couple-names {
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-5xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-slate-900);
+            margin-bottom: var(--space-16);
+            font-style: italic;
+        }
+
+        .ampersand {
+            font-size: 0.8em;
+            color: var(--color-gold);
+            margin: 0 var(--space-12);
+        }
+
+        .wedding-date {
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-2xl);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-24);
+        }
+
+        .wedding-tagline {
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            font-style: italic;
+            margin-top: var(--space-16);
+            margin-bottom: var(--space-8);
+        }
+
+        .venue-info {
+            font-size: var(--font-size-lg);
+            color: var(--color-text);
+            margin-bottom: var(--space-32);
+            line-height: 1.6;
+        }
+
+        .venue-name {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-slate-900);
+        }
+
+        .schedule {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-40);
+            margin-top: var(--space-32);
+            flex-wrap: wrap;
+        }
+
+        .schedule-item {
+            text-align: center;
+        }
+
+        .schedule-time {
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-gold);
+        }
+
+        .schedule-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: var(--space-4);
+        }
+
+        .photo-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: var(--color-rose-medium);
+            margin: var(--space-32) auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            font-style: italic;
+            border: 4px solid var(--color-gold);
+        }
+
+        /* Home Subapartados */
+        .home-subapartados {
+            margin-top: 0;
+        }
+
+        .subapartado {
+            padding: var(--space-48) 0;
+            text-align: center;
+        }
+
+        .subapartado-alojamiento {
+            background-color: var(--color-bg-2);
+        }
+
+        .subapartado-confirmacion {
+            background-color: #f8f4f2;
+        }
+
+        .subapartado-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .subapartado-title {
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-slate-900);
+            margin-bottom: var(--space-16);
+        }
+
+        .subapartado-text {
+            font-size: var(--font-size-lg);
+            color: var(--color-text);
+            margin-bottom: var(--space-24);
+            line-height: 1.6;
+        }
+
+        /* Carousel styles */
+        .image-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            margin: var(--space-24) 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            aspect-ratio: 3/4;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: var(--font-size-lg);
+            color: var(--color-text);
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background-color: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+            left: var(--space-12);
+        }
+
+        .carousel-next {
+            right: var(--space-12);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: var(--space-16);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: var(--space-8);
+            z-index: 10;
+        }
+
+        .carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background-color: var(--color-primary);
+            transform: scale(1.2);
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: var(--space-16) 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--space-32);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: var(--font-weight-medium);
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-base);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--color-primary);
+            background-color: var(--color-bg-8);
+        }
+
+        .nav-link.active {
+            color: var(--color-primary);
+            background-color: var(--color-bg-8);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: var(--space-64) 0;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            text-align: center;
+            margin-bottom: var(--space-48);
+            color: var(--color-slate-900);
+        }
+
+        .section-subtitle {
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-24);
+            color: var(--color-slate-900);
+        }
+
+        /* Venue Section */
+        .venue-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-48);
+            margin-bottom: var(--space-48);
+        }
+
+        .venue-info-card {
+            background-color: var(--color-surface);
+            padding: var(--space-32);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-card-border);
+        }
+
+        .venue-details {
+            margin-bottom: var(--space-24);
+        }
+
+        .venue-details h3 {
+            color: var(--color-slate-900);
+            margin-bottom: var(--space-12);
+        }
+
+        .venue-details p {
+            margin-bottom: var(--space-12);
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            background-color: var(--color-bg-2);
+            padding: var(--space-20);
+            border-radius: var(--radius-base);
+            margin-top: var(--space-20);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-20);
+            margin-top: var(--space-32);
+        }
+
+        .gallery-item {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Attire Section */
+        .attire-tabs {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-16);
+            margin-bottom: var(--space-48);
+        }
+
+        .tab-button {
+            background: transparent;
+            border: 2px solid var(--color-border);
+            padding: var(--space-12) var(--space-24);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+
+        .tab-button:hover {
+            border-color: var(--color-primary-hover);
+            color: var(--color-primary-hover);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .attire-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-48);
+        }
+
+        .attire-text-section {
+            max-width: 800px;
+            margin: 0 auto var(--space-48) auto;
+            background-color: var(--color-surface);
+            padding: var(--space-32);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-card-border);
+        }
+
+        .attire-carousel-panel {
+            background-color: var(--color-surface);
+            padding: var(--space-32);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-card-border);
+            margin-top: var(--space-32);
+        }
+
+        .attire-info {
+            background-color: var(--color-surface);
+            padding: var(--space-32);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-card-border);
+        }
+
+        .attire-list {
+            list-style: none;
+            margin: var(--space-16) 0;
+        }
+
+        .attire-list li {
+            padding: var(--space-8) 0;
+            border-bottom: 1px solid var(--color-card-border-inner);
+            position: relative;
+            padding-left: var(--space-20);
+        }
+
+        .attire-list li:before {
+            content: '◦';
+            color: var(--color-gold);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Companion fields styling */
+        .companion-group {
+            background-color: var(--color-bg-8);
+            padding: var(--space-24);
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-20);
+            border: 1px solid var(--color-card-border);
+        }
+
+        .companion-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .companion-group .form-label {
+            color: var(--color-slate-900);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .attire-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-16);
+            margin-top: var(--space-24);
+        }
+
+        .attire-image {
+            border-radius: var(--radius-base);
+            overflow: hidden;
+            aspect-ratio: 3/4;
+        }
+
+        .attire-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* RSVP Form */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--color-surface);
+            padding: var(--space-48);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-card-border);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-24);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-8);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-slate-900);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: var(--space-12) var(--space-16);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-md);
+            font-family: var(--font-family-base);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-focus-ring);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: var(--space-20);
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .btn {
+            background-color: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            border: none;
+            padding: var(--space-16) var(--space-32);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-md);
+            font-weight: var(--font-weight-medium);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: var(--color-primary-hover);
+        }
+
+        /* Success message */
+        .success-message {
+            background-color: var(--color-bg-3);
+            border: 1px solid rgba(var(--color-success-rgb), 0.3);
+            color: var(--color-success);
+            padding: var(--space-16);
+            border-radius: var(--radius-base);
+            margin-top: var(--space-16);
+            display: none;
+        }
+
+        /* Map Styles */
+        .map-container {
+            margin: var(--space-48) 0;
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-card-border);
+        }
+
+        .map-header {
+            padding: var(--space-24);
+            background-color: var(--color-bg-8);
+            border-bottom: 1px solid var(--color-card-border-inner);
+        }
+
+        .map-title {
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-slate-900);
+            margin-bottom: var(--space-8);
+        }
+
+        .map-subtitle {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-md);
+        }
+
+        #venue-map {
+            height: 400px;
+            width: 100%;
+        }
+
+        /* Custom Leaflet popup styling */
+        .custom-popup {
+            font-family: var(--font-family-base);
+        }
+
+        .custom-popup h4 {
+            font-family: var(--font-family-display);
+            color: var(--color-slate-900);
+            margin-bottom: var(--space-8);
+        }
+
+        .custom-popup p {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-4);
+            font-size: var(--font-size-sm);
+        }
+
+        /* Transport Section */
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-32);
+            margin-bottom: var(--space-48);
+        }
+
+        .transport-card {
+            background-color: var(--color-surface);
+            padding: var(--space-32);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-card-border);
+            text-align: center;
+        }
+
+        .transport-icon {
+            font-size: var(--font-size-5xl);
+            margin-bottom: var(--space-20);
+            display: block;
+        }
+
+        .airport-list {
+            text-align: left;
+            margin-top: var(--space-24);
+        }
+
+        .airport-item {
+            margin-bottom: var(--space-20);
+            padding: var(--space-16);
+            background-color: var(--color-bg-8);
+            border-radius: var(--radius-base);
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .airport-item h4 {
+            color: var(--color-slate-900);
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-8);
+        }
+
+        .airport-item p {
+            color: var(--color-text-secondary);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .transport-options {
+            list-style: none;
+            text-align: left;
+            margin-top: var(--space-24);
+        }
+
+        .transport-options li {
+            padding: var(--space-12) 0;
+            border-bottom: 1px solid var(--color-card-border-inner);
+            line-height: 1.6;
+        }
+
+        .transport-options li:last-child {
+            border-bottom: none;
+        }
+
+        .transport-options li strong {
+            color: var(--color-slate-900);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .special-transport {
+            margin-top: var(--space-48);
+        }
+
+        .special-transport-card {
+            background: linear-gradient(135deg, var(--color-bg-2) 0%, var(--color-bg-6) 100%);
+            padding: var(--space-40);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            border: 2px solid var(--color-gold);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .special-icon {
+            font-size: var(--font-size-5xl);
+            margin-bottom: var(--space-20);
+            display: block;
+        }
+
+        .special-title {
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-slate-900);
+            margin-bottom: var(--space-20);
+        }
+
+        .special-description {
+            font-size: var(--font-size-lg);
+            color: var(--color-text);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: var(--font-weight-medium);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navigation {
+                padding: var(--space-12) 0;
+            }
+
+            .nav-menu {
+                gap: var(--space-16);
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-link {
+                padding: var(--space-8) var(--space-12);
+                font-size: var(--font-size-sm);
+            }
+
+            .couple-names {
+                font-size: var(--font-size-3xl);
+            }
+
+            .venue-grid,
+            .attire-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-32);
+            }
+            
+            .attire-text-section {
+                margin-bottom: var(--space-32);
+                padding: var(--space-24);
+            }
+            
+            .attire-carousel-panel {
+                padding: var(--space-24);
+            }
+
+            .schedule {
+                gap: var(--space-20);
+            }
+
+            .attire-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-container {
+                padding: var(--space-32);
+                margin: 0 var(--space-16);
+            }
+
+            .transport-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-24);
+            }
+
+            .transport-card {
+                padding: var(--space-24);
+            }
+
+            .special-transport-card {
+                padding: var(--space-32);
+                margin: 0 var(--space-16);
+            }
+
+            .special-title {
+                font-size: var(--font-size-2xl);
+            }
+
+            .special-description {
+                font-size: var(--font-size-md);
+            }
+
+            #venue-map {
+                height: 300px;
+            }
+
+            .map-header {
+                padding: var(--space-16);
+            }
+
+            .map-title {
+                font-size: var(--font-size-lg);
+            }
+        }
+
+        /* Responsive styles for accommodation section */
+        @media (max-width: 768px) {
+            #accommodation .container > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                gap: var(--space-32) !important;
+            }
+            
+            #accommodation table {
+                font-size: var(--font-size-xs) !important;
+            }
+            
+            #accommodation th, #accommodation td {
+                padding: var(--space-8) !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .couple-names {
+                font-size: var(--font-size-2xl);
+            }
+
+            .schedule {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--space-16);
+            }
+
+            .radio-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="container nav-container">
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active" data-section="home">Inicio</a></li>
+                <li><a href="#venue" class="nav-link" data-section="venue">Lugar</a></li>
+                <li><a href="#attire" class="nav-link" data-section="attire">Cómo Vestir</a></li>
+                <li><a href="#transport" class="nav-link" data-section="transport">Transporte</a></li>
+                <li><a href="#accommodation" class="nav-link" data-section="accommodation">Alojamientos</a></li>
+                <li><a href="#rsvp" class="nav-link" data-section="rsvp">Confirmar Asistencia</a></li>
+                <li><a href="#confirmation" class="nav-link" data-section="confirmation" style="display: none;">Confirmación</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <div class="hero-content">
+                <p class="wedding-date">4 de Julio de 2026</p>
+                <h1 class="couple-names">
+                    Sara<span class="ampersand">&amp;</span>Roberto
+                </h1>
+                <p class="wedding-tagline">¡Nos casamos!</p>
+                
+                <div class="photo-placeholder">
+                    Foto de los Novios
+                </div>
+                
+                <div class="venue-info">
+                    <p>Tenemos el honor de invitaros a celebrar nuestra boda en</p>
+                    <p class="venue-name">Hacienda el Charruado</p>
+                    <p>Sanlúcar de Barrameda, Cádiz</p>
+                </div>
+                
+                <div class="schedule">
+                    <div class="schedule-item">
+                        <div class="schedule-time">19:00</div>
+                        <div class="schedule-label">Recepción</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">20:00</div>
+                        <div class="schedule-label">Ceremonia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- New Subapartados -->
+        <div class="home-subapartados">
+            <!-- Alojamiento Section -->
+            <div class="subapartado subapartado-alojamiento">
+                <div class="container">
+                    <div class="subapartado-content">
+                        <h3 class="subapartado-title">Alojamiento</h3>
+                        <p class="subapartado-text" style="font-size: var(--font-size-md);">Para quienes vengáis desde tierras remotas, os ofrecemos algunas posibilidades de alojamiento</p>
+                        <a href="#" onclick="showSection('venue'); return false;" style="color: var(--color-text-secondary); font-size: var(--font-size-sm); text-decoration: underline; font-weight: var(--font-weight-normal); opacity: 0.8; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Todos los detalles +</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Confirmación Asistencia Section -->
+            <div class="subapartado subapartado-confirmacion">
+                <div class="container">
+                    <div class="subapartado-content">
+                        <h3 class="subapartado-title" style="font-size: var(--font-size-lg);">Esperamos que nos acompañes en este día especial</h3>
+                        <a href="#" onclick="showSection('rsvp'); return false;" style="color: var(--color-text-secondary); font-size: var(--font-size-sm); text-decoration: underline; font-weight: var(--font-weight-normal); opacity: 0.8; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Confirmar asistencia</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section id="venue" class="section">
+        <div class="container">
+            <h2 class="section-title">Hacienda el Charruado</h2>
+            
+            <div class="venue-grid">
+                <div class="venue-info-card">
+                    <div class="venue-details">
+                        <h3>Sobre el Lugar</h3>
+                        <p>La boda tendrá lugar en la imponente Hacienda El Charruado, ubicada en el kilómetro 3 de la carretera de Munive (A-2077), en Sanlúcar de Barrameda, a 10 minutos en coche del centro de la localidad, y a poco más de Chipiona, otras de los municipios costeros del litoral gaditano. Esta finca, encaramada en un pequeño altozano, regala a sus visitantes panorámicas que quitan el aliento: desde viñedos y arboledas, hasta la orilla del mar donde el sol se oculta con un aplauso rojizo, regalando atardeceres de ensueño. Su arquitectura barroca, centrada en un patio interior típico de las casas de viña del marco de Jerez, emana la nobleza que un acontecimiento de esta magnitud merece.</p>
+                        <p>Con capacidad para 300 personas, ofrece jardines encantadores para la ceremonia, salón climatizado para la celebración y amplios espacios al aire libre.</p>
+                        <p><a href="https://haciendaelcharruado.es" target="_blank" style="color: var(--color-primary); font-weight: var(--font-weight-medium);">Visitar web oficial de Hacienda El Charruado</a></p>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h4>Información de Contacto</h4>
+                        <p><strong>Dirección:</strong> Crta. de Munive, Km 3<br>
+                        11540 Sanlúcar de Barrameda, Cádiz</p>
+                        <p><strong>Teléfono:</strong> 687 085 330</p>
+                    </div>
+                </div>
+                
+                <div class="venue-info-card">
+                    <h3>Cómo Llegar</h3>
+                    <p><strong>En Coche:</strong></p>
+                    <ul class="attire-list">
+                        <li>Desde Sevilla: A-4 dirección Cádiz, salida Jerez/Sanlúcar, continuar por A-480 hasta Sanlúcar</li>
+                        <li>Desde Cádiz: A-4 dirección Sevilla, salida Jerez, A-480 hasta Sanlúcar</li>
+                        <li>Una vez en Sanlúcar, tomar Carretera de Munive, Km 3</li>
+                    </ul>
+                    <p><strong>Servicios:</strong></p>
+                    <ul class="attire-list">
+                        <li>Jardines encantadores para ceremonia</li>
+                        <li>Salón climatizado</li>
+                        <li>Espacios al aire libre</li>
+                        <li>Parking privado</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Interactive Map -->
+            <div class="map-container">
+                <div class="map-header">
+                    <h3 class="map-title">Ubicación de Hacienda el Charruado</h3>
+                    <p class="map-subtitle">Mapa interactivo para ayudarte a llegar al venue</p>
+                </div>
+                <div id="venue-map"></div>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1760341570/pplx_project_search_images/e55d442b3cd8b05a6c94e21cae023d5c4e15afb3.png" alt="Vista aérea de Hacienda el Charruado durante un evento">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1760341571/pplx_project_search_images/c28c3597ef62c1ca1ed5e0420f36e56ece1cf8a6.png" alt="Montaje elegante de recepción en la hacienda">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1760341571/pplx_project_search_images/32c04f92ac835a50859f9670f116bb4d148f3bdd.png" alt="Vista panorámica de la Hacienda el Charruado">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1760548437/pplx_project_search_images/e4174845149bdbaf352689289c845f3fb025e84c.png" alt="Salón interior con vigas de madera y mesas elegantes">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.squarespace-cdn.com/content/v1/68bda8714070bb01f5a5ef33/295602be-a378-4bce-9b54-74617c4a9a74/DJI_0169-scaled.jpg" alt="Vista aérea espectacular de Hacienda El Charruado">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Attire Section -->
+    <section id="attire" class="section">
+        <div class="container">
+            <h2 class="section-title">Cómo Vestir</h2>
+            <p style="text-align: center; margin-bottom: 48px; font-size: 18px; color: var(--color-text-secondary);">Nuestra boda tiene una temática de Regencia Británica del siglo XIX, inspirada en Jane Austen y los Bridgerton</p>
+            
+            <div class="attire-tabs">
+                <button class="tab-button active" data-tab="ladies">Damas</button>
+                <button class="tab-button" data-tab="gentlemen">Caballeros</button>
+            </div>
+            
+            <!-- Ladies Tab -->
+            <div id="ladies-tab" class="tab-content active">
+                <div class="attire-text-section">
+                    <h3 class="section-subtitle">Moda Femenina de la Regencia</h3>
+                    <p>La moda femenina de la Regencia británica (1811-1820) se caracterizaba por la elegancia y simplicidad, inspirada en los ideales clásicos grecorromanos.</p>
+                    
+                    <h4>Vestidos</h4>
+                    <ul class="attire-list">
+                        <li>Corte imperio: cintura alta situada justo bajo el busto</li>
+                        <li>Materiales ligeros: muselina, seda, algodón fino</li>
+                        <li>Colores suaves: blanco, marfil, azul celeste, rosa pálido</li>
+                        <li>Mangas cortas abullonadas o largas ajustadas</li>
+                        <li>Escotes anchos y bajos, pero elegantes</li>
+                    </ul>
+                    
+                    <h4>Accesorios</h4>
+                    <ul class="attire-list">
+                        <li>Guantes largos de cabritilla o seda</li>
+                        <li>Retículas: pequeños bolsitos bordados</li>
+                        <li>Chales de cachemira o muselina</li>
+                        <li>Peinetas, cintas, flores para el cabello</li>
+                        <li>Abanicos decorativos</li>
+                    </ul>
+                    
+                    <h4>Calzado &amp; Joyas</h4>
+                    <ul class="attire-list">
+                        <li>Zapatos planos tipo bailarina con cintas</li>
+                        <li>Joyas delicadas: perlas, camafeos</li>
+                        <li>Topacios, amatistas, coral</li>
+                    </ul>
+                </div>
+                
+                <div class="attire-carousel-panel">
+                    <h4 style="text-align: center; margin-bottom: var(--space-24); color: var(--color-slate-900);">Galería de Vestimenta Femenina</h4>
+                    <div class="image-carousel" id="ladies-main-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/948d894ff345254990ade5ae70bbfa28ec1345b2.png" alt="Vestido rosa regencia con mangas abullonadas y patrón floral">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/4527fcd19877992c0dc3f72589894548e928a54b.png" alt="Mujer con vestido blanco regencia, guantes largos y sombrero">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/16b47994f580615dc54ddada8585dcca92d156a8.png" alt="Vestido blanco imperio con parasol y accesorios regencia">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/903952357b3fb221acb201d6a983ee4b5623db1b.png" alt="Vestido blanco con bordados florales, estilo regencia">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/d1e3c0ba724c58451a9ae0dc5b6ef531bf2b3c17.png" alt="Vestido azul satén con bordados florales y guantes">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1757846868/pplx_project_search_images/6c4e4ff6fbe886c7448c75e20a19233e0bb7f944.png" alt="Vestido rojo terciopelo con mangas blancas abullonadas">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/2539785890956b9e48d86bd5b2b476e4413f1d05.png" alt="Vestido a rayas rosa y blanco con bonete regencia">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/3929a0ca62db8951ddd022080e4b5e9004d43174.png" alt="Vestido regencia elaborado con chaqueta y sombrero">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/441612d6a22873f1f90d9e92eb3ee4649f7192f2.png" alt="Vestido blanco formal con tiara y accesorios regencia">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/58f7071b5ead06a33b21ee58c2f32e93f95d0a79.png" alt="Dos vestidos regencia melocotón y lavanda">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/cb1e5e1ab172204c50f6fb4a404b15a684339db0.png" alt="Grupo de mujeres con vestidos Bridgerton elaborados">
+                            </div>
+                        </div>
+                        <button class="carousel-nav carousel-prev" onclick="moveCarousel('ladies-main-carousel', -1)">‹</button>
+                        <button class="carousel-nav carousel-next" onclick="moveCarousel('ladies-main-carousel', 1)">›</button>
+                        <div class="carousel-indicators" id="ladies-main-carousel-indicators">
+                            <div class="carousel-indicator active" onclick="goToSlide('ladies-main-carousel', 0)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 1)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 2)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 3)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 4)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 5)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 6)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 7)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 8)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 9)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 10)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gentlemen Tab -->
+            <div id="gentlemen-tab" class="tab-content">
+                <div class="attire-text-section">
+                    <h3 class="section-subtitle">Moda Masculina de la Regencia</h3>
+                    <p>La moda masculina de la Regencia se caracterizaba por un estilo minimalista y elegante, influenciado por figuras como Beau Brummell.</p>
+                    
+                    <h4>Prendas Principales</h4>
+                    <ul class="attire-list">
+                        <li>Frac: chaqueta entallada con faldones largos hasta la rodilla</li>
+                        <li>Pantalones ajustados hasta los tobillos</li>
+                        <li>Chaleco de cintura alta y corte cuadrado</li>
+                        <li>Camisa con cuello alto y puños blancos</li>
+                        <li>Corbatín o cravat (precursor de la corbata)</li>
+                    </ul>
+                    
+                    <h4>Calzado</h4>
+                    <ul class="attire-list">
+                        <li>Botas altas estilo Wellington</li>
+                        <li>Zapatos de cuero lustrados con hebillas</li>
+                        <li>Medias de seda blancas o de color</li>
+                    </ul>
+                    
+                    <h4>Accesorios</h4>
+                    <ul class="attire-list">
+                        <li>Sombrero de copa alta</li>
+                        <li>Guantes de cuero fino</li>
+                        <li>Bastón (símbolo de distinción)</li>
+                        <li>Reloj de bolsillo con cadena</li>
+                    </ul>
+                    
+                    <h4>Colores</h4>
+                    <ul class="attire-list">
+                        <li>Predominantemente oscuros: negro, azul marino</li>
+                        <li>Marrón para el día, negro para la noche</li>
+                        <li>Chalecos en colores más vivos o estampados</li>
+                    </ul>
+                </div>
+                
+                <div class="attire-carousel-panel">
+                    <h4 style="text-align: center; margin-bottom: var(--space-24); color: var(--color-slate-900);">Galería de Vestimenta Masculina</h4>
+                    <div class="image-carousel" id="gentlemen-main-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760341569/pplx_project_search_images/7979e39202da18297c7cf004b4fdb14c3a0e48be.png" alt="Traje completo burdeos con bastón y sombrero de copa">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/7f91c6d8ddba0d6fdcbea4ab0b9285a9c56739dc.png" alt="Frac azul claro con pantalones beige estilo regencia">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/9c637f8c9fa0ddf1e8560d87e559af02aba04144.png" alt="Frac azul marino con chaleco beige y botas altas">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/ecdb6bd0478cae71e8fa151deddd65e30b8037a6.png" alt="Traje marrón con sombrero de copa y guantes">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/b81229fbecc38073ab9f2f9fa3c6a1265fe882f6.png" alt="Frac azul marino de doble botonadura">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/8371981191e2cad3ccf78163d7720f3118ca3af7.png" alt="Frac azul real con chaleco y corbatín">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/54cef36a2e48df4524aad3f75cd968c4e7ea13f3.png" alt="Hombre caminando con frac y bastón, estilo regencia">
+                            </div>
+                        </div>
+                        <button class="carousel-nav carousel-prev" onclick="moveCarousel('gentlemen-main-carousel', -1)">‹</button>
+                        <button class="carousel-nav carousel-next" onclick="moveCarousel('gentlemen-main-carousel', 1)">›</button>
+                        <div class="carousel-indicators" id="gentlemen-main-carousel-indicators">
+                            <div class="carousel-indicator active" onclick="goToSlide('gentlemen-main-carousel', 0)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 1)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 2)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 3)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 4)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 5)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 6)"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transport Section -->
+    <section id="transport" class="section">
+        <div class="container">
+            <h2 class="section-title">Transporte: Cómo llegar a Sanlúcar de Barrameda</h2>
+            
+            <div class="transport-grid">
+                <!-- Aeropuertos -->
+                <div class="transport-card">
+                    <div class="transport-icon">✈️</div>
+                    <h3 class="section-subtitle">En avión</h3>
+                    <div class="airport-list">
+                        <div class="airport-item">
+                            <h4>Aeropuerto de Jerez (XRY)</h4>
+                            <p>📍 26 km de Sanlúcar de Barrameda<br>🕐 35 minutos en coche</p>
+                        </div>
+                        <div class="airport-item">
+                            <h4>Aeropuerto de Sevilla (SVQ)</h4>
+                            <p>📍 82 km de Sanlúcar de Barrameda<br>🕐 1 hora y 20 minutos en coche</p>
+                        </div>
+                        <div class="airport-item">
+                            <h4>Aeropuerto de Málaga (AGP)</h4>
+                            <p>📍 167 km de Sanlúcar de Barrameda<br>🕐 2 horas y 30 minutos en coche</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desde Jerez -->
+                <div class="transport-card">
+                    <div class="transport-icon">🚗</div>
+                    <h3 class="section-subtitle">Desde el Aeropuerto de Jerez</h3>
+                    <ul class="transport-options">
+                        <li><strong>🚗 Coche:</strong> trayecto directo de 26 km, unos 35 minutos</li>
+                        <li><strong>🚕 Taxi:</strong> coste aproximado 65-80 € (30 minutos)</li>
+                        <li><strong>🚌 Autobús:</strong> del aeropuerto a Jerez (20 minutos) + autobús de Jerez a Sanlúcar (45 minutos)</li>
+                    </ul>
+                </div>
+                
+                <!-- Desde Sevilla -->
+                <div class="transport-card">
+                    <div class="transport-icon">🚆</div>
+                    <h3 class="section-subtitle">Desde el Aeropuerto de Sevilla</h3>
+                    <ul class="transport-options">
+                        <li><strong>🚗 Coche:</strong> 82 km, aprox. 1 hora y 20 minutos (por autopista)</li>
+                        <li><strong>🚕 Taxi:</strong> coste aproximado 150-170 €</li>
+                        <li><strong>🚌 Autobús:</strong> desde el aeropuerto de Sevilla hasta la Estación Plaza de Armas, y desde allí línea M-965 hasta Sanlúcar (duración total aprox. 2h 45min)</li>
+                        <li><strong>🚆 Tren:</strong> Sevilla-Santa Justa a Jerez + bus a Sanlúcar</li>
+                    </ul>
+                </div>
+                
+                <!-- Desde Málaga -->
+                <div class="transport-card">
+                    <div class="transport-icon">🚌</div>
+                    <h3 class="section-subtitle">Desde el Aeropuerto de Málaga</h3>
+                    <ul class="transport-options">
+                        <li><strong>🚗 Coche:</strong> 2 horas y 30 minutos (242 km aprox.)</li>
+                        <li><strong>🚌 Autobús:</strong> Vía Sevilla o Cádiz, 6h</li>
+                        <li><strong>🚆 Tren y bus:</strong> desde Málaga a Dos Hermanas y de ahí bus a Sanlúcar</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Autobuses especiales -->
+            <div class="special-transport">
+                <div class="special-transport-card">
+                    <div class="special-icon">🚐</div>
+                    <h3 class="special-title">Autobuses especiales boda</h3>
+                    <p class="special-description">Próximamente publicaremos los horarios de los autobuses que pondremos desde el centro de Sanlúcar de Barrameda hasta la hacienda para desplazar a todos los invitados cómodamente y facilitar el acceso al evento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodation Section -->
+    <section id="accommodation" class="section">
+        <div class="container">
+            <h2 class="section-title">Alojamientos</h2>
+            <p style="text-align: center; margin-bottom: 48px; font-size: 18px; color: var(--color-text-secondary);">Opciones de alojamiento en las localidades cercanas a la Hacienda el Charruado</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-48); margin-bottom: var(--space-48);">
+                <!-- Panel Sanlúcar -->
+                <div style="background-color: var(--color-surface); padding: var(--space-32); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--color-card-border);">
+                    <h3 style="font-family: var(--font-family-display); font-size: var(--font-size-2xl); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-24); color: var(--color-slate-900); text-align: center;">Alojamientos en Sanlúcar de Barrameda</h3>
+                    
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: var(--font-size-sm);">
+                            <thead>
+                                <tr style="background-color: var(--color-bg-8); border-bottom: 2px solid var(--color-primary);">
+                                    <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Hotel</th>
+                                    <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Precio/noche</th>
+                                    <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Centro</th>
+                                    <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Hacienda</th>
+                                    <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Reservar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Hotel Barrameda</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Calle Ancha, 10</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">70-85€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.2 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">8 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/barrameda.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Hotel Guadalquivir</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Calzada de la Duquesa Isabel, 20</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">80-95€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.6 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">8.5 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/guadalquivirlucarbarrameda.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Posada de Palacio</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Calle Caballeros, 9-11</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">95-120€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.3 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">8.2 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/posada-de-palacio.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Casa de las Especias Hotel Boutique</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Calle Especias</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">110-140€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.8 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">9 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/sanlucar-de-barrameda.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Albariza Hotel Boutique</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Sanlúcar de Barrameda</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">118-150€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">1 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">9.2 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/sanlucar-de-barrameda.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Panel Chipiona -->
+                <div style="background-color: var(--color-surface); padding: var(--space-32); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--color-card-border);">
+                    <h3 style="font-family: var(--font-family-display); font-size: var(--font-size-2xl); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-24); color: var(--color-slate-900); text-align: center;">Alojamientos en Chipiona</h3>
+                    
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: var(--font-size-sm);">
+                            <thead>
+                                <tr style="background-color: var(--color-bg-8); border-bottom: 2px solid var(--color-primary);">
+                                    <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Hotel</th>
+                                    <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Precio/noche</th>
+                                    <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Centro</th>
+                                    <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Hacienda</th>
+                                    <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Reservar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Hotel Chipiona</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Doctor Gómez Ulla, 19</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">65-85€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.55 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">12 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Hotel Agaró</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Plaza de Regla</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">110-140€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.4 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">11.5 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Hotel Vértice Chipiona Mar</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Frente a la playa</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">75-95€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.3 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">11.8 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>H Nieves Playa</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Cerca Playa de Regla</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">70-90€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.2 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">11.6 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Hotel La Española</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Frente a la playa</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">85-105€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.1 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">11.4 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background-color: var(--color-bg-2); padding: var(--space-32); border-radius: var(--radius-lg); text-align: center; border: 1px solid var(--color-card-border);">
+                <h4 style="font-family: var(--font-family-display); font-size: var(--font-size-xl); color: var(--color-slate-900); margin-bottom: var(--space-16);">💡 Recomendación</h4>
+                <p style="color: var(--color-text); line-height: 1.6; max-width: 800px; margin: 0 auto;">Los hoteles en Sanlúcar de Barrameda están más cerca de la Hacienda el Charruado, mientras que Chipiona ofrece opciones junto a la playa. Todas las distancias a la hacienda son aproximadas y pueden variar según la ruta.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="section">
+        <div class="container">
+            <h2 class="section-title">Confirmar Asistencia</h2>
+            
+            <div class="form-container">
+                <form id="rsvp-form" action="https://formsubmit.co/bodasararoberto2026@gmail.com" method="POST">
+                    <!-- FormSubmit configuration fields -->
+                    <input type="hidden" name="_subject" value="Nueva confirmación de asistencia - Boda Sara y Roberto">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="#confirmation">
+                    <div class="form-group">
+                        <label for="fullName" class="form-label">Nombre y Apellidos *</label>
+                        <input type="text" id="fullName" name="Nombre y Apellidos" class="form-control" required>
+                    </div>
+                    
+
+                    
+                    <div class="form-group">
+                        <label class="form-label">¿Confirmas tu asistencia? *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="attend-yes" name="Confirmas tu asistencia" value="Sí, asistiré" required>
+                                <label for="attend-yes">Sí, asistiré</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="attend-no" name="Confirmas tu asistencia" value="No podré asistir">
+                                <label for="attend-no">No podré asistir</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="main-dish-group">
+                        <label class="form-label">Plato principal *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="dish-vegan" name="Plato principal" value="Vegano" required>
+                                <label for="dish-vegan">Vegano</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="dish-meat" name="Plato principal" value="Carne">
+                                <label for="dish-meat">Carne</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="companions-group" style="display: none;">
+                        <label for="companions" class="form-label">Número de Acompañantes</label>
+                        <input type="number" id="companions" name="Número de acompañantes" class="form-control" min="0" max="10" value="0">
+                    </div>
+                    
+                    <!-- Dynamic companions fields container -->
+                    <div id="dynamic-companions-container"></div>
+                    
+                    <div class="form-group" id="accommodation-group">
+                        <label for="accommodation" class="form-label">¿Dónde dormirás?</label>
+                        <select id="accommodation" name="Dónde dormirás" class="form-control">
+                            <option value="">Selecciona una opción</option>
+                            <option value="no-se">Aún no lo sé</option>
+                            <option value="cadiz">Cádiz</option>
+                            <option value="chipiona">Chipiona</option>
+                            <option value="otras">Otras</option>
+                            <option value="sanlucar">Sanlúcar de Barrameda</option>
+                            <option value="sevilla">Sevilla</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="dietary-group" style="display: none;">
+                        <label for="dietary" class="form-label">Restricciones Alimentarias</label>
+                        <textarea id="dietary" name="Restricciones alimentarias" class="form-control" placeholder="Por favor, indique cualquier alergia o restricción alimentaria"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comments" class="form-label">Comentarios Adicionales</label>
+                        <textarea id="comments" name="Comentarios adicionales" class="form-control" placeholder="Indique si tiene algún tipo de intolerancia o alergia"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Confirmar Asistencia</button>
+                    
+                    <div id="success-message" class="success-message">
+                        ¡Gracias! Hemos recibido su confirmación de asistencia. Nos pondremos en contacto con usted pronto.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Section -->
+    <section id="confirmation" class="section">
+        <div class="container">
+            <div class="form-container" style="text-align: center; max-width: 700px;">
+                <div style="font-size: 64px; margin-bottom: 32px; color: var(--color-gold);">✨</div>
+                <h2 style="font-family: var(--font-family-display); font-size: var(--font-size-4xl); color: var(--color-slate-900); margin-bottom: 24px;">¡Confirmación Recibida!</h2>
+                
+                <div style="background-color: var(--color-bg-3); padding: 32px; border-radius: var(--radius-lg); margin-bottom: 32px; border: 2px solid rgba(var(--color-success-rgb), 0.2);">
+                    <p style="font-size: var(--font-size-lg); line-height: 1.6; color: var(--color-text); margin-bottom: 16px;">Estimados invitados,</p>
+                    
+                    <p style="font-size: var(--font-size-md); line-height: 1.7; color: var(--color-text); margin-bottom: 20px;">Gracias por confirmar vuestra asistencia a nuestra boda. Hemos recibido vuestra respuesta y nos pondremos en contacto con vosotros si necesitamos alguna aclaración adicional.</p>
+                    
+                    <p style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); color: var(--color-primary); margin-bottom: 8px;">¡Esperamos veros el 4 de julio de 2026 en la Hacienda el Charruado!</p>
+                    
+                    <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--color-card-border-inner);">
+                        <p style="font-style: italic; color: var(--color-text-secondary); margin: 0;">Con cariño,<br>Sara &amp; Roberto</p>
+                    </div>
+                </div>
+                
+                <button onclick="showSection('home')" class="btn" style="margin-right: 16px;">Volver al Inicio</button>
+                <button onclick="showSection('venue')" class="btn" style="background-color: var(--color-secondary); color: var(--color-text);">Ver Información del Lugar</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+        
+        function showSection(targetId) {
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            const activeLink = document.querySelector(`[data-section="${targetId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetSection = link.getAttribute('data-section');
+                showSection(targetSection);
+                
+                // Smooth scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        
+        // Attire tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+                
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                button.classList.add('active');
+                document.getElementById(targetTab + '-tab').classList.add('active');
+            });
+        });
+        
+        // RSVP form functionality
+        const form = document.getElementById('rsvp-form');
+        const attendanceRadios = document.querySelectorAll('input[name="Confirmas tu asistencia"]');
+        const companionsGroup = document.getElementById('companions-group');
+        const mainDishGroup = document.getElementById('main-dish-group');
+        const accommodationGroup = document.getElementById('accommodation-group');
+        const dietaryGroup = document.getElementById('dietary-group');
+        const companionsInput = document.getElementById('companions');
+        const successMessage = document.getElementById('success-message');
+        
+        // Show/hide companion fields based on attendance
+        attendanceRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'Sí, asistiré' && radio.checked) {
+                    companionsGroup.style.display = 'block';
+                    dietaryGroup.style.display = 'block';
+                } else {
+                    companionsGroup.style.display = 'none';
+                    dynamicCompanionsContainer.innerHTML = '';
+                    dietaryGroup.style.display = 'none';
+                }
+            });
+        });
+        
+        // Dynamic companions functionality
+        const dynamicCompanionsContainer = document.getElementById('dynamic-companions-container');
+        
+        function createCompanionFields(companionNumber) {
+            const companionDiv = document.createElement('div');
+            companionDiv.className = 'companion-group';
+            companionDiv.setAttribute('data-companion', companionNumber);
+            
+            companionDiv.innerHTML = `
+                <div class="form-group">
+                    <label for="companion-name-${companionNumber}" class="form-label">Nombre y apellidos del acompañante ${companionNumber} *</label>
+                    <input type="text" id="companion-name-${companionNumber}" name="Nombre acompañante ${companionNumber}" class="form-control companion-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Plato principal acompañante ${companionNumber} *</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="companion-dish-vegan-${companionNumber}" name="Plato acompañante ${companionNumber}" value="Vegano" class="companion-dish" required>
+                            <label for="companion-dish-vegan-${companionNumber}">Vegano</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="companion-dish-meat-${companionNumber}" name="Plato acompañante ${companionNumber}" value="Carne">
+                            <label for="companion-dish-meat-${companionNumber}">Carne</label>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return companionDiv;
+        }
+        
+        function updateCompanionFields() {
+            const companionsCount = parseInt(companionsInput.value) || 0;
+            
+            // Clear existing companion fields
+            dynamicCompanionsContainer.innerHTML = '';
+            
+            // Create new companion fields
+            for (let i = 1; i <= companionsCount; i++) {
+                const companionField = createCompanionFields(i);
+                dynamicCompanionsContainer.appendChild(companionField);
+            }
+        }
+        
+        // Update companion fields when number changes
+        companionsInput.addEventListener('change', updateCompanionFields);
+        
+        // Form submission
+        form.addEventListener('submit', (e) => {
+            // Validate required fields before submission
+            const fullName = document.getElementById('fullName').value;
+            const attendance = document.querySelector('input[name="Confirmas tu asistencia"]:checked');
+            const mainDish = document.querySelector('input[name="Plato principal"]:checked');
+            
+            if (!fullName.trim()) {
+                alert('Por favor, introduce tu nombre y apellidos.');
+                e.preventDefault();
+                return;
+            }
+            
+            if (!attendance) {
+                alert('Por favor, confirma si asistirás a la boda.');
+                e.preventDefault();
+                return;
+            }
+            
+            if (attendance.value === 'Sí, asistiré') {
+                if (!mainDish) {
+                    alert('Por favor, selecciona tu preferencia de plato principal.');
+                    e.preventDefault();
+                    return;
+                }
+                
+                // Validate companion fields if there are companions
+                const companionsCount = parseInt(companionsInput.value) || 0;
+                if (companionsCount > 0) {
+                    const companionNames = document.querySelectorAll('.companion-name');
+                    const companionDishes = document.querySelectorAll('.companion-dish');
+                    
+                    // Check all companion names are filled
+                    for (let i = 0; i < companionNames.length; i++) {
+                        if (!companionNames[i].value.trim()) {
+                            alert(`Por favor, introduce el nombre del acompañante ${i + 1}.`);
+                            e.preventDefault();
+                            return;
+                        }
+                    }
+                    
+                    // Check all companion dishes are selected
+                    for (let i = 1; i <= companionsCount; i++) {
+                        const dishSelected = document.querySelector(`input[name="Plato acompañante ${i}"]:checked`);
+                        if (!dishSelected) {
+                            alert(`Por favor, selecciona la preferencia de plato para el acompañante ${i}.`);
+                            e.preventDefault();
+                            return;
+                        }
+                    }
+                }
+            }
+            
+            // If validation passes, allow form submission to FormSubmit
+            // FormSubmit will handle the email sending and redirect to confirmation page
+        });
+        
+        // Initialize Map
+        function initializeMap() {
+            // Map coordinates for Hacienda el Charruado
+            const lat = 36.753414;
+            const lng = -6.365233;
+            
+            // Initialize the map
+            const map = L.map('venue-map').setView([lat, lng], 15);
+            
+            // Add tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            // Custom marker icon
+            const customIcon = L.divIcon({
+                className: 'custom-div-icon',
+                html: '<div style="background-color: var(--color-primary); width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"></div>',
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            });
+            
+            // Add marker with popup
+            const marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
+            
+            const popupContent = `
+                <div class="custom-popup">
+                    <h4>Hacienda el Charruado</h4>
+                    <p><strong>Dirección:</strong> Crta. de Munive, Km 3</p>
+                    <p>11540 Sanlúcar de Barrameda, Cádiz</p>
+                    <p><strong>Teléfono:</strong> 687 085 330</p>
+                    <p style="margin-top: var(--space-8); color: var(--color-gold); font-weight: var(--font-weight-medium);">¡Te esperamos el 4 de julio de 2026!</p>
+                </div>
+            `;
+            
+            marker.bindPopup(popupContent);
+            
+            // Add click event to marker
+            marker.on('click', function() {
+                marker.openPopup();
+            });
+            
+            // Add map controls
+            map.zoomControl.setPosition('topright');
+            
+            return map;
+        }
+        
+        // Initialize map when venue section is shown
+        let venueMap = null;
+        
+        function showSection(targetId) {
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                
+                // Initialize map when venue section is shown
+                if (targetId === 'venue' && !venueMap) {
+                    setTimeout(() => {
+                        venueMap = initializeMap();
+                    }, 100);
+                }
+                
+                // Invalidate map size when switching sections (fixes map display issues)
+                if (targetId === 'venue' && venueMap) {
+                    setTimeout(() => {
+                        venueMap.invalidateSize();
+                    }, 150);
+                }
+            }
+            
+            const activeLink = document.querySelector(`[data-section="${targetId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+        
+        // Check URL for confirmation redirect
+        window.addEventListener('load', () => {
+            // Check if we're returning from FormSubmit
+            const urlParams = new URLSearchParams(window.location.search);
+            const hash = window.location.hash;
+            
+            if (hash === '#confirmation' || urlParams.get('submitted') === 'true') {
+                showSection('confirmation');
+                // Clean URL
+                history.replaceState(null, null, window.location.pathname);
+            }
+        });
+        
+        // Carousel functionality
+        let carouselPositions = {};
+        
+        function initializeCarousel(carouselId) {
+            if (!carouselPositions[carouselId]) {
+                carouselPositions[carouselId] = 0;
+            }
+        }
+        
+        function moveCarousel(carouselId, direction) {
+            initializeCarousel(carouselId);
+            
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+            
+            const container = carousel.querySelector('.carousel-container');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const indicators = carousel.querySelectorAll('.carousel-indicator');
+            const totalSlides = slides.length;
+            
+            if (totalSlides === 0) return;
+            
+            carouselPositions[carouselId] += direction;
+            
+            if (carouselPositions[carouselId] >= totalSlides) {
+                carouselPositions[carouselId] = 0;
+            } else if (carouselPositions[carouselId] < 0) {
+                carouselPositions[carouselId] = totalSlides - 1;
+            }
+            
+            const translateX = -carouselPositions[carouselId] * 100;
+            container.style.transform = `translateX(${translateX}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                if (index === carouselPositions[carouselId]) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+        
+        function goToSlide(carouselId, slideIndex) {
+            initializeCarousel(carouselId);
+            
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+            
+            const container = carousel.querySelector('.carousel-container');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const indicators = carousel.querySelectorAll('.carousel-indicator');
+            const totalSlides = slides.length;
+            
+            if (slideIndex < 0 || slideIndex >= totalSlides) return;
+            
+            carouselPositions[carouselId] = slideIndex;
+            
+            const translateX = -carouselPositions[carouselId] * 100;
+            container.style.transform = `translateX(${translateX}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                if (index === slideIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+        
+        // Initialize all carousels on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousels = document.querySelectorAll('.image-carousel');
+            carousels.forEach(carousel => {
+                const carouselId = carousel.id;
+                if (carouselId) {
+                    initializeCarousel(carouselId);
+                }
+            });
+        });
+        
+        // Add some elegant animations
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navigation');
+            if (window.scrollY > 100) {
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</body>
+</html>
