@@ -248,7 +248,12 @@
             letter-spacing: 1px;
             margin-top: var(--space-4);
         }
-
+.photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* hace que la foto se adapte y rellene el círculo */
+  border-radius: 50%; /* opcional, por seguridad visual */
+}
         .photo-placeholder {
             width: 200px;
             height: 200px;
@@ -1035,7 +1040,7 @@
                 <p class="wedding-tagline">¡Nos casamos!</p>
                 
                 <div class="photo-placeholder">
-                    Foto de los Novios
+                    <img src="assets/img/novios.jpg" alt="Foto de los Novios">
                 </div>
                 
                 <div class="venue-info">
