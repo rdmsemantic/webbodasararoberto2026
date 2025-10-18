@@ -802,7 +802,11 @@
         .airport-list {
             text-align: left;
             margin-top: var(--space-24);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem; /* espacio entre columnas */
         }
+
 
         .airport-item {
             margin-bottom: var(--space-20);
@@ -1187,7 +1191,7 @@
                     </ul>
                 </div>
                 
-                <div class="attire-carousel-panel">
+                <div class="attire-carousel-panel attire-text-section">
                     <h4 style="text-align: center; margin-bottom: var(--space-24); color: var(--color-slate-900);">Galería de Vestimenta Femenina</h4>
                     <div class="image-carousel" id="ladies-main-carousel">
                         <div class="carousel-container">
@@ -1282,7 +1286,7 @@
                     </ul>
                 </div>
                 
-                <div class="attire-carousel-panel">
+                <div class="attire-carousel-panel ">
                     <h4 style="text-align: center; margin-bottom: var(--space-24); color: var(--color-slate-900);">Galería de Vestimenta Masculina</h4>
                     <div class="image-carousel" id="gentlemen-main-carousel">
                         <div class="carousel-container">
@@ -1329,10 +1333,17 @@
     <section id="transport" class="section">
         <div class="container">
             <h2 class="section-title">Transporte: Cómo llegar a Sanlúcar de Barrameda</h2>
-            
+             <!-- Autobuses especiales -->
+            <div class="special-transport">
+                <div class="special-transport-card">
+                    <div class="special-icon">🚐</div>
+                    <h3 class="special-title">Autobuses especiales boda</h3>
+                    <p class="special-description">Próximamente publicaremos los horarios de los autobuses que pondremos desde el centro de Sanlúcar de Barrameda hasta la hacienda para desplazar a todos los invitados cómodamente y facilitar el acceso al evento.</p>
+                </div>
+            </div>
+            </br>
             <div class="transport-grid">
-                <!-- Aeropuertos -->
-                <div class="transport-card">
+                 <div class="transport-card">
                     <div class="transport-icon">✈️</div>
                     <h3 class="section-subtitle">En avión</h3>
                     <div class="airport-list">
@@ -1350,7 +1361,8 @@
                         </div>
                     </div>
                 </div>
-                
+            </div>
+            <div class="transport-grid">
                 <!-- Desde Jerez -->
                 <div class="transport-card">
                     <div class="transport-icon">🚗</div>
@@ -1386,14 +1398,7 @@
                 </div>
             </div>
             
-            <!-- Autobuses especiales -->
-            <div class="special-transport">
-                <div class="special-transport-card">
-                    <div class="special-icon">🚐</div>
-                    <h3 class="special-title">Autobuses especiales boda</h3>
-                    <p class="special-description">Próximamente publicaremos los horarios de los autobuses que pondremos desde el centro de Sanlúcar de Barrameda hasta la hacienda para desplazar a todos los invitados cómodamente y facilitar el acceso al evento.</p>
-                </div>
-            </div>
+          
         </div>
     </section>
 
@@ -1560,12 +1565,16 @@
             <h2 class="section-title">Confirmar Asistencia</h2>
             
             <div class="form-container">
-                <form id="rsvp-form" action="https://formsubmit.co/bodasararoberto2026@gmail.com" method="POST">
+                <!--<form id="rsvp-form" action="https://formsubmit.co/bodasararoberto2026@gmail.com" method="POST">-->
+                <form id="rsvp-form" action="https://formsubmit.co/47d63f8dd7d9744570dd586c56e8306e" method="POST">    
                     <!-- FormSubmit configuration fields -->
                     <input type="hidden" name="_subject" value="Nueva confirmación de asistencia - Boda Sara y Roberto">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="#confirmation">
+                    <!--<input type="hidden" name="_next" value="#confirmation"> -->
+                      <!-- Campo oculto para redirigir después del envío-->
+                     <input type="hidden" name="_next" value="https://rdmsemantic.github.io/webbodasararoberto2026/index.html">
+
                     <div class="form-group">
                         <label for="fullName" class="form-label">Nombre y Apellidos *</label>
                         <input type="text" id="fullName" name="Nombre y Apellidos" class="form-control" required>
@@ -2035,7 +2044,7 @@
                 nav.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
             } else {
                 nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-            }
+            } 
         });
     </script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
