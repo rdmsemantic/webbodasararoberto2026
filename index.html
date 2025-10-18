@@ -149,7 +149,7 @@
         /* Header & Hero Section */
         .hero {
            /* background: linear-gradient(135deg, var(--color-rose-light) 0%, var(--color-ivory) 100%);*/
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -248,7 +248,12 @@
             letter-spacing: 1px;
             margin-top: var(--space-4);
         }
-
+.photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* hace que la foto se adapte y rellene el círculo */
+  border-radius: 50%; /* opcional, por seguridad visual */
+}
         .photo-placeholder {
             width: 200px;
             height: 200px;
@@ -1006,6 +1011,29 @@
                 flex-direction: column;
             }
         }
+
+        .note {
+    font-size: 0.95em;
+    color: #555;
+    background: #f7f7f7;
+    padding: 0.7em 1em;
+    border-radius: 7px;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    box-shadow: 0 0 2px #eee;
+}
+
+.note a {
+    color: #3165ae;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.note a:hover {
+    color: #27467a;
+    text-decoration: underline;
+}
+
     </style>
 </head>
 <body>
@@ -1035,7 +1063,7 @@
                 <p class="wedding-tagline">¡Nos casamos!</p>
                 
                 <div class="photo-placeholder">
-                    Foto de los Novios
+                    <img src="assets/img/novios.jpg" alt="Foto de los Novios">
                 </div>
                 
                 <div class="venue-info">
@@ -1065,7 +1093,7 @@
                     <div class="subapartado-content">
                         <h3 class="subapartado-title">Alojamiento</h3>
                         <p class="subapartado-text" style="font-size: var(--font-size-md);">Para quienes vengáis desde tierras remotas, os ofrecemos algunas posibilidades de alojamiento</p>
-                        <a href="#" onclick="showSection('venue'); return false;" style="color: var(--color-text-secondary); font-size: var(--font-size-sm); text-decoration: underline; font-weight: var(--font-weight-normal); opacity: 0.8; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Todos los detalles +</a>
+                        <a href="#" onclick="showSection('accommodation'); return false;" style="color: var(--color-text-secondary); font-size: var(--font-size-sm); text-decoration: underline; font-weight: var(--font-weight-normal); opacity: 0.8; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Todos los detalles +</a>
                     </div>
                 </div>
             </div>
@@ -1074,7 +1102,7 @@
             <div class="subapartado subapartado-confirmacion">
                 <div class="container">
                     <div class="subapartado-content">
-                        <h3 class="subapartado-title" style="font-size: var(--font-size-lg);">Esperamos que nos acompañes en este día especial</h3>
+                        <h3 class="subapartado-title" style="font-size: var(--font-size-lg);">Esperamos que nos acompañéis en este día especial</h3>
                         <a href="#" onclick="showSection('rsvp'); return false;" style="color: var(--color-text-secondary); font-size: var(--font-size-sm); text-decoration: underline; font-weight: var(--font-weight-normal); opacity: 0.8; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Confirmar asistencia</a>
                     </div>
                 </div>
@@ -1091,14 +1119,17 @@
                 <div class="venue-info-card">
                     <div class="venue-details">
                         <h3>Sobre el Lugar</h3>
-                        <p>La boda tendrá lugar en la imponente Hacienda El Charruado, ubicada en el kilómetro 3 de la carretera de Munive (A-2077), en Sanlúcar de Barrameda, a 10 minutos en coche del centro de la localidad, y a poco más de Chipiona, otras de los municipios costeros del litoral gaditano. Esta finca, encaramada en un pequeño altozano, regala a sus visitantes panorámicas que quitan el aliento: desde viñedos y arboledas, hasta la orilla del mar donde el sol se oculta con un aplauso rojizo, regalando atardeceres de ensueño. Su arquitectura barroca, centrada en un patio interior típico de las casas de viña del marco de Jerez, emana la nobleza que un acontecimiento de esta magnitud merece.</p>
+                        <p>La boda tendrá lugar en la imponente Hacienda El Charruado, ubicada en el kilómetro 3 de la carretera de Munive (A-2077), en Sanlúcar de Barrameda, a 10 minutos en coche del centro de la localidad, y a poco más de Chipiona, otras de los municipios costeros del litoral gaditano. 
+                            <!--
+                            Esta finca, encaramada en un pequeño altozano, regala a sus visitantes panorámicas que quitan el aliento: desde viñedos y arboledas, hasta la orilla del mar donde el sol se oculta con un aplauso rojizo, regalando atardeceres de ensueño. Su arquitectura barroca, centrada en un patio interior típico de las casas de viña del marco de Jerez, emana la nobleza que un acontecimiento de esta magnitud merece.-->
+                        </p>
                         <p>Con capacidad para 300 personas, ofrece jardines encantadores para la ceremonia, salón climatizado para la celebración y amplios espacios al aire libre.</p>
-                        <p><a href="https://haciendaelcharruado.es" target="_blank" style="color: var(--color-primary); font-weight: var(--font-weight-medium);">Visitar web oficial de Hacienda El Charruado</a></p>
+                        <p><a href="https://haciendaelcharruado.es" target="_blank" style="color: var(--color-primary); font-weight: var(--font-weight-medium);">Web oficial</a></p>
                     </div>
                     
                     <div class="contact-info">
                         <h4>Información de Contacto</h4>
-                        <p><strong>Dirección:</strong> Crta. de Munive, Km 3<br>
+                        <p><strong>Dirección:</strong> Crta. de Munive, Km 3 <!--<br>-->
                         11540 Sanlúcar de Barrameda, Cádiz</p>
                         <p><strong>Teléfono:</strong> 687 085 330</p>
                     </div>
@@ -1172,7 +1203,7 @@
                     <ul class="attire-list">
                         <li>Corte imperio: cintura alta situada justo bajo el busto</li>
                         <li>Materiales ligeros: muselina, seda, algodón fino</li>
-                        <li>Colores suaves: blanco, marfil, azul celeste, rosa pálido</li>
+                        <li>Colores suaves o pasteles: azul celeste, lavanda, rosa pálido, verde menta, crema, melocotón, celeste, lila</li>
                         <li>Mangas cortas abullonadas o largas ajustadas</li>
                         <li>Escotes anchos y bajos, pero elegantes</li>
                     </ul>
@@ -1198,6 +1229,9 @@
                     <h4 style="text-align: center; margin-bottom: var(--space-24); color: var(--color-slate-900);">Galería de Vestimenta Femenina</h4>
                     <div class="image-carousel" id="ladies-main-carousel">
                         <div class="carousel-container">
+                            <div class="carousel-slide">
+                                <img src="https://i.etsystatic.com/33478656/r/il/f719ac/6838446902/il_794xN.6838446902_bkj2.jpg" alt="Vestido de gala de estilo floral">
+                            </div>
                             <div class="carousel-slide">
                                 <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/948d894ff345254990ade5ae70bbfa28ec1345b2.png" alt="Vestido rosa regencia con mangas abullonadas y patrón floral">
                             </div>
@@ -1335,7 +1369,7 @@
     <!-- Transport Section -->
     <section id="transport" class="section">
         <div class="container">
-            <h2 class="section-title">Transporte: Cómo llegar a Sanlúcar de Barrameda</h2>
+            <h2 class="section-title">Transporte: llegar a Sanlúcar</h2>
              <!-- Autobuses especiales -->
             <div class="special-transport">
                 <div class="special-transport-card">
@@ -1401,14 +1435,46 @@
                 </div>
             </div>
             
-          
+                      <br>
+            <!-- NUEVO APARTADO: Vuelos Bilbao-Jerez / Bilbao-Sevilla -->
+            <div class="transport-grid">
+                <!-- Vuelos Bilbao-Jerez -->
+                <div class="transport-card">
+                    <div class="transport-icon">✈️</div>
+                    <h3 class="section-subtitle">Vuelos Bilbao ⇄ Jerez</h3>
+                    <ul class="transport-options">
+                        <li><strong>Aerolínea:</strong> Vueling</li>
+                        <li><strong>Frecuencia verano:</strong> habitualmente, 2 vuelos directos semanales</li>
+                        <li><strong>Días de vuelo directo:</strong> Martes y Sábado</li>
+                        <li><strong>Temporada:</strong> 21 de junio a 13 de septiembre</li>
+                        <li><strong>Con escala:</strong> Madrid/Barcelona (Iberia, Air Europa)</li>
+                    </ul>
+                    <p class="note">Datos extraídos de: 
+            <a href="https://bilbaohiria.com/bizkaia/vuelos-directos-de-jerez-a-bilbao-vueling-aumenta-frecuencias-este-verano/" target="_blank">
+                Vuelos directos de Jerez a Bilbao - verano 2025
+            </a>
+        </p>
+                </div>
+                <!-- Vuelos Bilbao-Sevilla -->
+                <div class="transport-card">
+                    <div class="transport-icon">✈️</div>
+                    <h3 class="section-subtitle">Vuelos Bilbao ⇄ Sevilla</h3>
+                    <ul class="transport-options">
+                        <li><strong>Aerolíneas:</strong> Vueling, Volotea</li>
+                        <li><strong>Frecuencia:</strong> Hasta 34 vuelos semanales (~4-5 diarios)</li>
+                        <li><strong>Días de vuelo directo:</strong> Lunes a domingo</li>
+                        <li><strong>Frecuencia diaria:</strong> 4-5 vuelos directos cada día</li>
+                     </ul>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- Accommodation Section -->
     <section id="accommodation" class="section">
         <div class="container">
-            <h2 class="section-title">Alojamientos</h2>
+            <h2 class="section-title">Alojamiento</h2>
             <p style="text-align: center; margin-bottom: 48px; font-size: 18px; color: var(--color-text-secondary);">Opciones de alojamiento en las localidades cercanas a la Hacienda el Charruado</p>
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-48); margin-bottom: var(--space-48);">
@@ -1436,7 +1502,7 @@
                                     <td style="padding: var(--space-12); color: var(--color-text);">70-85€</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">0.2 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">8 km</td>
-                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/barrameda.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/barrameda.es.html?checkin=2026-07-03&checkout=2026-07-05&group_adults=2&group_children=0&no_rooms=1" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
                                     <td style="padding: var(--space-12); color: var(--color-text);">
@@ -1446,7 +1512,7 @@
                                     <td style="padding: var(--space-12); color: var(--color-text);">80-95€</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">0.6 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">8.5 km</td>
-                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/guadalquivirlucarbarrameda.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/guadalquivirlucarbarrameda.es.html?checkin=2026-07-03&checkout=2026-07-05&group_adults=2&group_children=0&no_rooms=1" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
                                     <td style="padding: var(--space-12); color: var(--color-text);">
@@ -1456,7 +1522,7 @@
                                     <td style="padding: var(--space-12); color: var(--color-text);">95-120€</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">0.3 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">8.2 km</td>
-                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/posada-de-palacio.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/posada-de-palacio.es.html?checkin=2026-07-03&checkout=2026-07-05&group_adults=2&group_children=0&no_rooms=1" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
                                     <td style="padding: var(--space-12); color: var(--color-text);">
@@ -1466,9 +1532,9 @@
                                     <td style="padding: var(--space-12); color: var(--color-text);">110-140€</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">0.8 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">9 km</td>
-                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/sanlucar-de-barrameda.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                    <td style="padding: var(--space-12);"><a href="https://es.casaespecias.de/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en web oficial</a></td>
                                 </tr>
-                                <tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
                                     <td style="padding: var(--space-12); color: var(--color-text);">
                                         <strong>Albariza Hotel Boutique</strong><br>
                                         <small style="color: var(--color-text-secondary);">Sanlúcar de Barrameda</small>
@@ -1476,7 +1542,57 @@
                                     <td style="padding: var(--space-12); color: var(--color-text);">118-150€</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">1 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">9.2 km</td>
-                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/sanlucar-de-barrameda.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/albariza-boutique.es.html?checkin=2026-07-03&checkout=2026-07-05&group_adults=2&group_children=0&no_rooms=1" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Palacio de Arizón</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Calle Arizón</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">120-160€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.5 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">8.3 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/eurostars-palacio-marques-de-arizon.es.html?checkin=2026-07-03&checkout=2026-07-05&group_adults=2&group_children=0&no_rooms=1" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>La Casa Sanlúcar</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Centro histórico</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">90-110€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.4 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">8.1 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.lacasasanlucar.com/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en web oficial</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Bohemia Sanlúcar</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Sanlúcar de Barrameda</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">85-105€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.7 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">8.8 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.bohemiasanlucar.com/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en web oficial</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>La Estación Hostal</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Sanlúcar de Barrameda</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">60-75€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">1.2 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">9.5 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://la-estacion.hotels-costadelaluz.net/es/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en web oficial</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Casa 1832 Boutique</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Casco histórico</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">105-130€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.3 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">8.1 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://lacasa1832.com/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en web oficial</a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1539,7 +1655,7 @@
                                     <td style="padding: var(--space-12); color: var(--color-text);">11.6 km</td>
                                     <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
                                 </tr>
-                                <tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
                                     <td style="padding: var(--space-12); color: var(--color-text);">
                                         <strong>Hotel La Española</strong><br>
                                         <small style="color: var(--color-text-secondary);">Frente a la playa</small>
@@ -1547,6 +1663,56 @@
                                     <td style="padding: var(--space-12); color: var(--color-text);">85-105€</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">0.1 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">11.4 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Hostal Quinto Pino</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Cerca del centro</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">80-95€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.6 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">12.2 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Chipibeach B&amp;B Chez Flo</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Zona playa</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">110-135€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.3 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">11.7 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Hostal Rompeolas Playa</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Frente a la playa</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">75-90€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.4 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">11.9 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Hostal El Faro</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Cerca del faro</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">85-100€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.5 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">12 km</td>
+                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                        <strong>Hotel Playa de Regla</strong><br>
+                                        <small style="color: var(--color-text-secondary);">Playa de Regla</small>
+                                    </td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">95-115€</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">0.2 km</td>
+                                    <td style="padding: var(--space-12); color: var(--color-text);">11.5 km</td>
                                     <td style="padding: var(--space-12);"><a href="https://www.booking.com/city/es/chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
                                 </tr>
                             </tbody>
@@ -1783,7 +1949,13 @@
                     </div>
                 </div>
             `;
-            
+             // Si es el primer acompañante, poner foco en su campo de nombre
+            if (companionNumber === 1) {
+                // Espera un pequeño instante para que el elemento esté en el DOM
+                setTimeout(() => {
+                    companionDiv.querySelector(`#companion-name-${companionNumber}`).focus();
+                }, 0);
+            }
             return companionDiv;
         }
         
