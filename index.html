@@ -148,7 +148,7 @@
 
         /* Header & Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--color-rose-light) 0%, var(--color-ivory) 100%);
+           /* background: linear-gradient(135deg, var(--color-rose-light) 0%, var(--color-ivory) 100%);*/
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -432,6 +432,8 @@
         .section {
             padding: var(--space-64) 0;
             display: none;
+       /*     scroll-margin-top: 80px; /* evita que el título quede oculto al hacer clic en los enlaces del menú */
+
         }
 
         .section.active {
@@ -445,6 +447,7 @@
             text-align: center;
             margin-bottom: var(--space-48);
             color: var(--color-slate-900);
+            margin-top:25px;
         }
 
         .section-subtitle {
@@ -1022,7 +1025,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="section active">
+    <section id="home" class="section active" style="margin-top:0px!important">
         <div class="hero">
             <div class="hero-content">
                 <p class="wedding-date">4 de Julio de 2026</p>
