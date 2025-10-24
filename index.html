@@ -1965,10 +1965,12 @@
                 if (radio.value === 'Sí, asistiré' && radio.checked) {
                     companionsGroup.style.display = 'block';
                     dietaryGroup.style.display = 'block';
+                    accommodationGroup.style.display = 'block';
                 } else {
                     companionsGroup.style.display = 'none';
                     dynamicCompanionsContainer.innerHTML = '';
                     dietaryGroup.style.display = 'none';
+                    accommodationGroup.style.display = 'none';
                 }
             });
         });
@@ -2282,6 +2284,7 @@
                 companionsGroup.style.display = "block";
                 dietaryGroup.style.display = "block";
                 mainDishGroup.style.display = "block";
+                accommodationGroup.style.display = "block";
                 dishRadios.forEach(d => d.required = true);
                 } else {
                 // Ocultar y eliminar "required"
@@ -2289,6 +2292,7 @@
                 dynamicCompanionsContainer.innerHTML = "";
                 dietaryGroup.style.display = "none";
                 mainDishGroup.style.display = "none";
+                accommodationGroup.style.display = "none";
                 dishRadios.forEach(d => d.required = false);
                 }
             });
