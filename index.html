@@ -158,18 +158,28 @@
             position: relative;
             padding: var(--space-40) var(--space-20);
         }
+        
+        /* Marco ovalado alrededor del hero */
+        .hero-frame {
+            width: min(100%, 980px);
+            margin: 0 auto;
+            padding: 48px 40px;
+            border-radius: 9999px; /* crea la forma ovalada */
+            border: 6px solid rgba(212,175,55,0.18); /* borde dorado suave */
+            background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.8));
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(2px);
+        }
 
-        .hero::before {
-            content: '';
+        /* Variante decorativa: un borde interior más fino */
+        .hero-frame::after {
+            content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(232, 213, 208, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+            inset: 8px;
+            border-radius: 9999px;
+            border: 2px solid rgba(212,175,55,0.06);
             pointer-events: none;
         }
 
@@ -400,6 +410,7 @@
             padding: var(--space-16) 0;
             box-shadow: var(--shadow-sm);
         }
+
 
         .nav-container {
             display: flex;
@@ -1034,6 +1045,22 @@
     text-decoration: underline;
 }
 
+ /* Ajustes para móviles muy estrechos donde el menú ocupa más alto */
+       @media (max-width: 400px) {
+           body {
+               padding-top: 110px;
+           }
+           .section {
+               scroll-margin-top: 120px;
+           }
+           /* reduce el padding lateral del nav para evitar salto de línea */
+           .navigation .nav-container {
+               padding-left: var(--space-12);
+               padding-right: var(--space-12);
+           }
+       }
+        /* ...existing code... */
+
     </style>
 </head>
 <body>
@@ -1388,6 +1415,11 @@
                             <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 4)"></div>
                             <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 5)"></div>
                             <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 6)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 7)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 8)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 9)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 10)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 11)"></div>
                         </div>
                     </div>
                 </div>
@@ -1554,7 +1586,7 @@
                                     <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/posada-de-palacio.es.html?checkin=2026-07-03&checkout=2026-07-05&group_adults=2&group_children=0&no_rooms=1" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
-                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                    <td style="padding: var(--space-12); color: var,--color-text);">
                                         <strong>Casa de las Especias Hotel Boutique</strong><br>
                                         <small style="color: var(--color-text-secondary);">Calle Especias</small>
                                     </td>
@@ -1564,17 +1596,17 @@
                                     <td style="padding: var(--space-12);"><a href="https://es.casaespecias.de/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en web oficial</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
-                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                    <td style="padding: var(--space-12); color: var,--color-text);">
                                         <strong>Albariza Hotel Boutique</strong><br>
                                         <small style="color: var(--color-text-secondary);">Sanlúcar de Barrameda</small>
                                     </td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">118-150€</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">1 km</td>
-                                    <td style="padding: var(--space-12); color: var(--color-text);">9.2 km</td>
+                                    <td style="padding: var(--space-12); color: var,--color-text);">9.2 km</td>
                                     <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/albariza-boutique.es.html?checkin=2026-07-03&checkout=2026-07-05&group_adults=2&group_children=0&no_rooms=1" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
-                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                    <td style="padding: var(--space-12); color: var,--color-text);">
                                         <strong>Palacio de Arizón</strong><br>
                                         <small style="color: var(--color-text-secondary);">Calle Arizón</small>
                                     </td>
@@ -1584,42 +1616,42 @@
                                     <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/eurostars-palacio-marques-de-arizon.es.html?checkin=2026-07-03&checkout=2026-07-05&group_adults=2&group_children=0&no_rooms=1" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
-                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                    <td style="padding: var(--space-12); color: var,--color-text);">
                                         <strong>La Casa Sanlúcar</strong><br>
                                         <small style="color: var(--color-text-secondary);">Centro histórico</small>
                                     </td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">90-110€</td>
-                                    <td style="padding: var(--space-12); color: var(--color-text);">0.4 km</td>
+                                    <td style="padding: var(--space-12); color: var,--color-text);">0.4 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">8.1 km</td>
                                     <td style="padding: var(--space-12);"><a href="https://www.lacasasanlucar.com/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en web oficial</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
-                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                    <td style="padding: var(--space-12); color: var,--color-text);">
                                         <strong>Bohemia Sanlúcar</strong><br>
                                         <small style="color: var(--color-text-secondary);">Sanlúcar de Barrameda</small>
                                     </td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">85-105€</td>
-                                    <td style="padding: var(--space-12); color: var(--color-text);">0.7 km</td>
+                                    <td style="padding: var(--space-12); color: var,--color-text);">0.7 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">8.8 km</td>
                                     <td style="padding: var(--space-12);"><a href="https://www.bohemiasanlucar.com/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en web oficial</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
-                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                    <td style="padding: var(--space-12); color: var,--color-text);">
                                         <strong>La Estación Hostal</strong><br>
                                         <small style="color: var(--color-text-secondary);">Sanlúcar de Barrameda</small>
                                     </td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">60-75€</td>
-                                    <td style="padding: var(--space-12); color: var(--color-text);">1.2 km</td>
+                                    <td style="padding: var(--space-12); color: var,--color-text);">1.2 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">9.5 km</td>
                                     <td style="padding: var(--space-12);"><a href="https://la-estacion.hotels-costadelaluz.net/es/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en web oficial</a></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                    <td style="padding: var(--space-12); color: var,--color-text);">
                                         <strong>Casa 1832 Boutique</strong><br>
                                         <small style="color: var(--color-text-secondary);">Casco histórico</small>
                                     </td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">105-130€</td>
-                                    <td style="padding: var(--space-12); color: var(--color-text);">0.3 km</td>
+                                    <td style="padding: var(--space-12); color: var,--color-text);">0.3 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">8.1 km</td>
                                     <td style="padding: var(--space-12);"><a href="https://lacasa1832.com/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en web oficial</a></td>
                                 </tr>
@@ -1639,7 +1671,7 @@
                                     <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Hotel</th>
                                     <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Precio/noche</th>
                                     <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Centro</th>
-                                    <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">El Charruado</th>
+                                    <th style="padding: var(--space-12); text-align: left; font-weight: var,--font-weight-semibold); color: var(--color-slate-900);">El Charruado</th>
                                     <th style="padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-slate-900);">Reservar</th>
                                 </tr>
                             </thead>
@@ -1665,49 +1697,39 @@
                                     <td style="padding: var(--space-12);"><a href="https://www.hotelagarochipiona.com/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en web oficial</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
-                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                    <td style="padding: var(--space-12); color: var,--color-text);">
                                         <strong>Hotel Vértice Chipiona Mar</strong><br>
                                         <small style="color: var(--color-text-secondary);">Frente a la playa</small>
                                     </td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">75-95€</td>
-                                    <td style="padding: var(--space-12); color: var(--color-text);">0.3 km</td>
+                                    <td style="padding: var(--space-12); color: var,--color-text);">0.3 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">11.8 km</td>
                                     <td style="padding: var(--space-12);"><a href="https://www.verticehoteles.com/hotel-vertice-chipiona-mar/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en web oficial</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
-                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                    <td style="padding: var(--space-12); color: var,--color-text);">
                                         <strong>Hotel Nieves Playa</strong><br>
                                         <small style="color: var(--color-text-secondary);">Cerca Playa de Regla</small>
                                     </td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">70-90€</td>
-                                    <td style="padding: var(--space-12); color: var(--color-text);">0.2 km</td>
+                                    <td style="padding: var(--space-12); color: var,--color-text);">0.2 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">11.6 km</td>
                                     <td style="padding: var(--space-12);"><a href="https://www.hotelnieveschipiona.com/" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
-                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                    <td style="padding: var(--space-12); color: var,--color-text);">
                                         <strong>Hotel La Española</strong><br>
                                         <small style="color: var(--color-text-secondary);">Frente a la playa</small>
                                     </td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">85-105€</td>
-                                    <td style="padding: var(--space-12); color: var(--color-text);">0.1 km</td>
+                                    <td style="padding: var(--space-12); color: var,--color-text);">0.1 km</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">11.4 km</td>
                                     <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/la-espanola-chipiona.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
-                                    <td style="padding: var(--space-12); color: var(--color-text);">
+                                    <td style="padding: var(--space-12); color: var,--color-text);">
                                         <strong>Hostal Quinto Pino</strong><br>
                                         <small style="color: var(--color-text-secondary);">Cerca del centro</small>
-                                    </td>
-                                    <td style="padding: var(--space-12); color: var(--color-text);">80-95€</td>
-                                    <td style="padding: var(--space-12); color: var(--color-text);">0.6 km</td>
-                                    <td style="padding: var(--space-12); color: var(--color-text);">12.2 km</td>
-                                    <td style="padding: var(--space-12);"><a href="https://www.booking.com/hotel/es/hostal-quinto-pino.es.html" target="_blank" style="color: var(--color-primary); font-size: var(--font-size-xs);">Ver en Booking</a></td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid var(--color-card-border-inner);">
-                                    <td style="padding: var(--space-12); color: var(--color-text);">
-                                        <strong>Chipibeach B&amp;B Chez Flo</strong><br>
-                                        <small style="color: var(--color-text-secondary);">Zona playa</small>
                                     </td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">110-135€</td>
                                     <td style="padding: var(--space-12); color: var(--color-text);">0.3 km</td>
@@ -2251,6 +2273,27 @@
                 nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
             } 
         });
+
+        attendanceRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                const dishRadios = document.querySelectorAll('input[name="Plato principal"]');
+                if (radio.value === "Sí, asistiré" && radio.checked) {
+                // Mostrar grupos dependientes y activar "required"
+                companionsGroup.style.display = "block";
+                dietaryGroup.style.display = "block";
+                mainDishGroup.style.display = "block";
+                dishRadios.forEach(d => d.required = true);
+                } else {
+                // Ocultar y eliminar "required"
+                companionsGroup.style.display = "none";
+                dynamicCompanionsContainer.innerHTML = "";
+                dietaryGroup.style.display = "none";
+                mainDishGroup.style.display = "none";
+                dishRadios.forEach(d => d.required = false);
+                }
+            });
+            });
+
     </script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </body>
