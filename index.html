@@ -6,6 +6,7 @@
     <title>Sara &amp; Roberto - 4 de Julio 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="shop.css"/>
     <style>
         :root {
             /* Primitive Color Tokens */
@@ -1062,6 +1063,34 @@
         /* ...existing code... */
 
     </style>
+
+<!-- CSS destacado para el botón -->
+<style>
+.boton-rsvp {
+  background: linear-gradient(90deg, var(--color-gold) 0%, var(--color-gold) 100%);
+  color: #fff;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 4px 20px rgba(255, 114, 177, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: pulse 1.3s infinite alternate;
+}
+@keyframes pulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.05); }
+}
+.boton-rsvp:hover {
+  box-shadow: 0 6px 30px rgba(255,114,177,0.35);
+  transform: scale(1.08);
+  opacity: 0.92;
+}
+</style>
+
+
 </head>
 <body>
     <!-- Navigation -->
@@ -1102,13 +1131,29 @@
                 <div class="schedule">
                     <div class="schedule-item">
                         <div class="schedule-time">19:00</div>
-                        <div class="schedule-label">Recepción</div>
+                        <div class="schedule-label">Bienvenida</div>
                     </div>
                     <div class="schedule-item">
                         <div class="schedule-time">20:00</div>
                         <div class="schedule-label">Ceremonia</div>
                     </div>
+                   
                 </div>
+                <!--  <div class="schedule">
+                     <div class="schedule-item">
+                        <div class="schedule-time">21:00</div>
+                        <div class="schedule-label">Cóctel</div>
+                    </div>
+                     <div class="schedule-item">
+                        <div class="schedule-time">22:00</div>
+                        <div class="schedule-label">Banquete</div>
+                    </div>
+                </div>   -->
+
+
+
+
+               
             </div>
         </div>
         
@@ -1130,7 +1175,7 @@
                 <div class="container">
                     <div class="subapartado-content">
                         <h3 class="subapartado-title" style="font-size: var(--font-size-lg);">Esperamos que nos acompañéis en este día especial</h3>
-                        <a href="#" onclick="showSection('rsvp'); return false;" style="color: var(--color-text-secondary); font-size: var(--font-size-sm); text-decoration: underline; font-weight: var(--font-weight-normal); opacity: 0.8; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Confirmar asistencia</a>
+                        <a href="#"  onclick="showSection('rsvp'); return false;" style="color: var(--color-text-secondary); font-size: var(--font-size-sm); text-decoration: underline; font-weight: var(--font-weight-normal); opacity: 0.8; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Confirmar asistencia</a>
                     </div>
                 </div>
             </div>
@@ -1225,7 +1270,9 @@
     <section id="attire" class="section">
         <div class="container">
             <h2 class="section-title">Cómo Vestir</h2>
-            <p style="text-align: center; margin-bottom: 48px; font-size: 18px; color: var(--color-text-secondary);">Nuestra boda tiene una temática de Regencia Británica del siglo XIX, inspirada en Jane Austen y los Bridgerton</p>
+            <p style="text-align: center; margin-bottom: 48px; font-size: 18px; color: var(--color-text-secondary);">Nuestra boda tiene una temática de Regencia Británica del siglo XIX, inspirada en Jane Austen y los Bridgerton. 
+            Con estos consejos y fotos, os animamos a incorporar elementos de esta moda para sumergirnos juntos en este ambiente especial. ¡Esperamos que os sirvan de inspiración!
+        </p>
             
             <div class="attire-tabs">
                 <button class="tab-button active" data-tab="ladies">Damas</button>
@@ -1236,18 +1283,32 @@
             <div id="ladies-tab" class="tab-content active">
                 <div class="attire-text-section">
                     <h3 class="section-subtitle">Moda Femenina de la Regencia</h3>
-                    <p>La moda femenina de la Regencia británica (1811-1820) se caracterizaba por la elegancia y simplicidad, inspirada en los ideales clásicos grecorromanos.</p>
-                    
-                    <h4>Vestidos</h4>
-                    <ul class="attire-list">
+                    <p>La moda femenina de la Regencia británica (1811-1820) se caracterizaba por la elegancia y simplicidad, inspirada en los ideales clásicos grecorromanos.
+                         Los vestidos de corte imperio son la pieza estrella de la regencia: cintura alta bajo el busto, mangas abullonadas y colores pastel. Los zapatos suelen ser planos o de tacón bajo y los complementos son sencillos abanicos, joyas, tocados o retículas.
+                    </p>
+                    <br>
+                    <!--<h4>👗 Vestidos</h4>
+                        <ul class="attire-list">
                         <li>Corte imperio: cintura alta situada justo bajo el busto</li>
                         <li>Materiales ligeros: muselina, seda, algodón fino</li>
                         <li>Colores suaves o pasteles: azul celeste, lavanda, rosa pálido, verde menta, crema, melocotón, celeste, lila</li>
                         <li>Mangas cortas abullonadas o largas ajustadas</li>
                         <li>Escotes anchos y bajos, pero elegantes</li>
                     </ul>
+                    <div class="shops-grid">
+                            <div class="shop-card">
+                                <h4>Etsy - Vestidos Regencia/Bridgerton</h4>
+                                <a href="https://www.etsy.com/market/bridgerton_dress" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                          
+                            <div class="shop-card">
+                                <h4>The Pirate Dressing</h4>
+                                <a href="https://www.thepiratedressing.com/bridgerton-dresses-c-48/" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                        </div>
+                   
                     
-                    <h4>Accesorios</h4>
+                    <h4>🪭 Accesorios</h4>
                     <ul class="attire-list">
                         <li>Guantes largos de cabritilla o seda</li>
                         <li>Retículas: pequeños bolsitos bordados</li>
@@ -1256,12 +1317,122 @@
                         <li>Abanicos decorativos</li>
                     </ul>
                     
-                    <h4>Calzado &amp; Joyas</h4>
+                    <h4>👠 Calzado &amp; Joyas</h4>
                     <ul class="attire-list">
                         <li>Zapatos planos tipo bailarina con cintas</li>
                         <li>Joyas delicadas: perlas, camafeos</li>
                         <li>Topacios, amatistas, coral</li>
+                    </ul>-->
+                </div>
+               <div class="attire-text-section">
+                    <h3 class="section-subtitle">👗 Vestidos</h3>
+                         <ul class="attire-list">
+                        <li>Corte imperio: cintura alta situada justo bajo el busto</li>
+                        <li>Materiales ligeros: muselina, seda, algodón fino</li>
+                        <li>Colores suaves o pasteles: azul celeste, lavanda, rosa pálido, verde menta, crema, melocotón, celeste, lila</li>
+                        <li>Mangas cortas abullonadas o largas ajustadas</li>
+                        <li>Escotes anchos y bajos, pero elegantes</li>
                     </ul>
+                    <div class="shops-grid">
+                            <div class="shop-card">
+                                <h4>Etsy 🔑 Bridgerton Dess</h4>
+                                <a href="https://www.etsy.com/market/bridgerton_dress" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                          
+                            <div class="shop-card">
+                                <h4>The Pirate Dressing</h4>
+                                <a href="https://www.thepiratedressing.com/bridgerton-dresses-c-48/" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                            <div class="shop-card">
+                                <h4>Historical Emporium</h4>
+                                <a href="https://www.historicalemporium.com/store/ladies-dresses-suits.php?theme=Regency" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                            <div class="shop-card">
+                                <h4>Amazon 🔑 Vestidos Regency</h4>
+                                <a href="https://www.amazon.es/s?k=vestidos+regency" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                        </div>
+                </div>
+                 <div class="attire-text-section">
+                    <h3 class="section-subtitle">🪭 Accesorios 👑 Tocados 🧤 Guantes</h3>
+                       <ul class="attire-list">
+                        <li>Guantes largos de satén, cabritilla o seda</li>
+                        <li>Retículas: pequeños bolsitos bordados</li>
+                        <li>Chales de cachemira o muselina</li>
+                        <li>Peinetas, cintas, flores para el cabello</li>
+                        <li>Abanicos decorativos</li>
+                    </ul>
+                   <div class="shops-grid">
+                            <div class="shop-card">
+                                <h4>Fernando Claro - Guantes Fiesta</h4>
+                                <a href="https://fernandoclaro.com/es/guantes-de-fiesta" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                            <div class="shop-card">
+                                <h4>Santacana - Guantes Ceremonia</h4>
+                                <a href="https://santacana.es/es/guantes-de-ceremonia" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                            <div class="shop-card">
+                                <h4>Carnavalife - Guantes Satén</h4>
+                                <a href="https://carnavalife.es/guantes-largos-saten-mujer-elegantes" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                            <div class="shop-card">
+                                <h4>Etsy - Guantes Elegantes</h4>
+                                <a href="https://www.etsy.com/es/listing/835461568/" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                             <div class="shop-card">
+                                <h4>Etsy - Accesorios Regencia</h4>
+                                <a href="https://www.etsy.com/market/regency_dress" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                            <div class="shop-card">
+                                <h4>Disfraces Simón - Bridgerton</h4>
+                                <a href="https://www.disfracessimon.com/collections/bridgerton" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+  <div class="shop-card">
+                                <h4>Tienda de Abanicos</h4>
+                                <a href="https://tiendadeabanicos.com/56-abanicos-artesania" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                            <div class="shop-card">
+                                <h4>Juan Foronda - Abanicos</h4>
+                                <a href="https://juanforonda.com/es/8-abanicos" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                            <div class="shop-card">
+                                <h4>Nuevo Bazar Madrid</h4>
+                                <a href="https://www.nuevobazarmadrid.com/categoria-producto/abanicos-espanoles/" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                            <div class="shop-card">
+                                <h4>Etsy - Retículas</h4>
+                                <a href="https://www.etsy.com/es/search?q=reticule+regency" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+
+                        </div>
+
+                </div>
+                 <div class="attire-text-section">
+                    <h3 class="section-subtitle">👠 Calzado &amp; Joyas</h3>
+                       <ul class="attire-list">
+                        <li>Zapatos planos tipo bailarina con cintas</li>
+                        <li>Joyas delicadas: perlas, camafeos</li>
+                        <li>Topacios, amatistas, coral</li>
+                    </ul>
+                   <div class="shops-grid">
+                           
+                     <div class="shop-card">
+                                <h4>Werner Kern - Zapatos Danza</h4>
+                                <a href="https://www.werner-kern.es/Zapatos-de-mujer/Zapatos-de-baile/" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                            <div class="shop-card">
+                                <h4>Todo Ballet</h4>
+                                <a href="https://todoballet.com/zapatillas-de-ballet/" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+                            <div class="shop-card">
+                                <h4>Pecas - Zapatos Regencycore</h4>
+                                <a href="https://pecas.com/collections/zapatos-regencycore" target="_blank" class="shop-link">Ver tienda →</a>
+                            </div>
+
+
+
+                        </div>
+
                 </div>
                 
                 <div class="attire-carousel-panel attire-text-section">
@@ -1272,39 +1443,41 @@
                                 <img src="https://i.etsystatic.com/33478656/r/il/f719ac/6838446902/il_794xN.6838446902_bkj2.jpg" alt="Vestido de gala de estilo floral">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/948d894ff345254990ade5ae70bbfa28ec1345b2.png" alt="Vestido rosa regencia con mangas abullonadas y patrón floral">
+                                <img src="https://i.pinimg.com/1200x/d5/b1/d4/d5b1d4f020a4662e91c8297ea5e18abf.jpg">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/4527fcd19877992c0dc3f72589894548e928a54b.png" alt="Mujer con vestido blanco regencia, guantes largos y sombrero">
+                                <img src="https://i.pinimg.com/736x/97/84/e9/9784e96ddc91dbc199e4e47b42d95ad8.jpg" alt="Mujer con vestido blanco regencia, guantes largos y sombrero">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/16b47994f580615dc54ddada8585dcca92d156a8.png" alt="Vestido blanco imperio con parasol y accesorios regencia">
+                                <img src="https://i.pinimg.com/736x/4e/f6/74/4ef6745748dd8d8f103d5c559f415d78.jpg" alt="Vestido blanco imperio con parasol y accesorios regencia">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/903952357b3fb221acb201d6a983ee4b5623db1b.png" alt="Vestido blanco con bordados florales, estilo regencia">
+                                <img src="https://i.pinimg.com/736x/be/2a/78/be2a78f62b97ebf0e21327cdf110fd32.jpg" alt="Vestido blanco con bordados florales, estilo regencia">
                             </div>
                             <div class="carousel-slide">
                                 <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/d1e3c0ba724c58451a9ae0dc5b6ef531bf2b3c17.png" alt="Vestido azul satén con bordados florales y guantes">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1757846868/pplx_project_search_images/6c4e4ff6fbe886c7448c75e20a19233e0bb7f944.png" alt="Vestido rojo terciopelo con mangas blancas abullonadas">
+                                <img src="https://i.pinimg.com/736x/36/22/fa/3622fa6b9bb176d5ce82cd0afcbdcece.jpg" alt="Vestido rojo terciopelo con mangas blancas abullonadas">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/2539785890956b9e48d86bd5b2b476e4413f1d05.png" alt="Vestido a rayas rosa y blanco con bonete regencia">
+                                <img src="https://i.pinimg.com/736x/6a/d6/9e/6ad69e65b244c99c5a291353df845b24.jpg" alt="Vestido a rayas rosa y blanco con bonete regencia">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/3929a0ca62db8951ddd022080e4b5e9004d43174.png" alt="Vestido regencia elaborado con chaqueta y sombrero">
+                                <img src="https://i.pinimg.com/736x/e2/22/c0/e222c0de21c08dc893da6d1544337577.jpg" alt="Vestido regencia elaborado con chaqueta y sombrero">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/441612d6a22873f1f90d9e92eb3ee4649f7192f2.png" alt="Vestido blanco formal con tiara y accesorios regencia">
+                                <img src="https://i.pinimg.com/1200x/39/76/24/397624b32fba6409cb89e238020318bf.jpg" alt="Vestido blanco formal con tiara y accesorios regencia">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/58f7071b5ead06a33b21ee58c2f32e93f95d0a79.png" alt="Dos vestidos regencia melocotón y lavanda">
+                                <img src="https://i.pinimg.com/736x/52/35/46/52354635e981f059862873f765d93ad7.jpg" alt="Dos vestidos regencia melocotón y lavanda">
                             </div>
                             <div class="carousel-slide">
                                 <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/cb1e5e1ab172204c50f6fb4a404b15a684339db0.png" alt="Grupo de mujeres con vestidos Bridgerton elaborados">
                             </div>
-                         
+                            <div class="carousel-slide">
+                                <img src="https://i.pinimg.com/1200x/1f/e2/26/1fe226e23b5a8d672bb727e689e36db2.jpg" alt="Vestido regencia azul claro con detalles blancos y sombrero">
+                            </div>
 
                         </div>
                         <button class="carousel-nav carousel-prev" onclick="moveCarousel('ladies-main-carousel', -1)">‹</button>
@@ -1321,6 +1494,7 @@
                             <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 8)"></div>
                             <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 9)"></div>
                             <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 10)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('ladies-main-carousel', 11)"></div>
                         </div>
                     </div>
                 </div>
@@ -1331,7 +1505,7 @@
                 <div class="attire-text-section">
                     <h3 class="section-subtitle">Moda Masculina de la Regencia</h3>
                     <p>La moda masculina de la Regencia se caracterizaba por un estilo elegante, influenciado por figuras como Beau Brummell.</p>
-                    
+                    <br>
                     <h4>Prendas Principales</h4>
                     <ul class="attire-list">
                         <li>Frac: chaqueta entallada con faldones largos hasta la rodilla</li>
@@ -1369,25 +1543,25 @@
                     <div class="image-carousel" id="gentlemen-main-carousel">
                         <div class="carousel-container">
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760341569/pplx_project_search_images/7979e39202da18297c7cf004b4fdb14c3a0e48be.png" alt="Traje completo burdeos con bastón y sombrero de copa">
+                                <img src="https://i.pinimg.com/736x/54/50/53/545053a5b8c2a5707844c671e8bbc325.jpg">
                             </div>
                             <div class="carousel-slide">
                                 <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/7f91c6d8ddba0d6fdcbea4ab0b9285a9c56739dc.png" alt="Frac azul claro con pantalones beige estilo regencia">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/9c637f8c9fa0ddf1e8560d87e559af02aba04144.png" alt="Frac azul marino con chaleco beige y botas altas">
+                                <img src="https://i.pinimg.com/1200x/f1/69/2c/f1692cdc932c2e372d7ba36fb20bc7ba.jpg">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/ecdb6bd0478cae71e8fa151deddd65e30b8037a6.png" alt="Traje marrón con sombrero de copa y guantes">
+                                <img src="https://i.pinimg.com/1200x/6e/73/0d/6e730dcbec5785b81f5bb91a3bf50d30.jpg">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343114/pplx_project_search_images/b81229fbecc38073ab9f2f9fa3c6a1265fe882f6.png" alt="Frac azul marino de doble botonadura">
+                                <img src="https://i.pinimg.com/736x/e1/e5/ce/e1e5cea059025d606cb5ff135c5cbf78.jpg">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/8371981191e2cad3ccf78163d7720f3118ca3af7.png" alt="Frac azul real con chaleco y corbatín">
+                                <img src="https://i.pinimg.com/1200x/4e/c4/bf/4ec4bfef0f4918faa61debd7941e9223.jpg">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://pplx-res.cloudinary.com/image/upload/v1760343135/pplx_project_search_images/54cef36a2e48df4524aad3f75cd968c4e7ea13f3.png" alt="Hombre caminando con frac y bastón, estilo regencia">
+                                <img src="https://i.pinimg.com/736x/cd/9e/6a/cd9e6a09f117d0663ca5f4993c4e7c8a.jpg">
                             </div>
                             <div class="carousel-slide">
                                 <a target="_blank" href="https://www.etsy.com/es/listing/4384908283/frac-azul-de-la-regencia-para-hombre?ls=s&ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=mr+darcy+costume&ref=sr_gallery-1-6&content_source=30516ac2-d16f-4a22-a890-fff4afa2c4cc%253ALT43cdac99843ea0a4b724bc600f1c5a1fda3fd8d7&organic_search_click=1&logging_key=30516ac2-d16f-4a22-a890-fff4afa2c4cc%3ALT43cdac99843ea0a4b724bc600f1c5a1fda3fd8d7">
@@ -1399,10 +1573,26 @@
                                 <img src="https://i.etsystatic.com/56046207/r/il/6aff8c/6994877778/il_794xN.6994877778_oqlp.jpg">
                                 </a>
                             </div>
-                        
                             <div class="carousel-slide">
-                                <img src="https://i.pinimg.com/736x/2d/74/f7/2d74f730a87799c26ea5cfb67fd46a87.jpg">
-                              
+                                <img src="https://i.pinimg.com/736x/7f/bd/4a/7fbd4a02996c4a6913e4dff405da4537.jpg">
+                            </div>   
+                            <div class="carousel-slide">
+                                <img src="https://i.pinimg.com/736x/8f/50/bd/8f50bd4f993df6cb0475dbd0b84214c6.jpg">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://i.pinimg.com/1200x/a4/78/54/a4785477b12c32e34b5d6c147f9718cd.jpg">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://i.pinimg.com/736x/4a/79/48/4a7948df6ee354d66ff69d62be099a9d.jpg">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://i.pinimg.com/1200x/6c/66/7b/6c667bf61ee85d96f821d6624c560b5b.jpg">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://i.pinimg.com/736x/42/3f/db/423fdb0a91702dd893664e08a2e097bb.jpg">
+                            </div>   
+                            <div class="carousel-slide">
+                                <img src="https://i.pinimg.com/1200x/22/f9/a6/22f9a64fe0a0719448dc2bd30ed784ae.jpg">
                             </div>
                         </div>
                         <button class="carousel-nav carousel-prev" onclick="moveCarousel('gentlemen-main-carousel', -1)">‹</button>
@@ -1420,6 +1610,12 @@
                             <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 9)"></div>
                             <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 10)"></div>
                             <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 11)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 12)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 13)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 14)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 15)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 16)"></div>
+                            <div class="carousel-indicator" onclick="goToSlide('gentlemen-main-carousel', 17)"></div>
                         </div>
                     </div>
                 </div>

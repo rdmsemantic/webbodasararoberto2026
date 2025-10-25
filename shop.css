@@ -1,0 +1,114 @@
+    /* Shopping Section Styles */
+        .shopping-categories {
+            margin-top: var(--space-32);
+        }
+        
+        .shopping-category {
+            margin-bottom: var(--space-64);
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-32);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-card-border);
+        }
+        
+        .category-header {
+            margin-bottom: var(--space-32);
+            text-align: center;
+        }
+        
+        .category-title {
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-slate-900);
+            margin-bottom: var(--space-16);
+        }
+        
+        .category-description {
+            font-size: var(--font-size-lg);
+            color: var(--color-text);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .shops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-24);
+        }
+        
+        .shop-card {
+            background-color: var(--color-bg-8);
+            padding: var(--space-24);
+            border-radius: var(--radius-base);
+            border: 1px solid var(--color-card-border-inner);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .shop-card:hover {
+            background-color: var(--color-bg-1);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .shop-card h4 {
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-lg);
+            color: var(--color-slate-900);
+            margin-bottom: var(--space-16);
+            line-height: 1.4;
+        }
+        
+        .shop-link {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-sm);
+            background-color: rgba(var(--color-primary-rgb, 33, 128, 141), 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .shop-link:hover {
+            color: var(--color-primary-hover);
+            background-color: rgba(var(--color-primary-rgb, 33, 128, 141), 0.2);
+            border-color: var(--color-primary);
+            text-decoration: none;
+        }
+        
+        /* Responsive design for shopping section */
+        @media (max-width: 768px) {
+            .shops-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-16);
+            }
+            
+            .shopping-category {
+                padding: var(--space-24);
+                margin-bottom: var(--space-40);
+            }
+            
+            .category-title {
+                font-size: var(--font-size-xl);
+            }
+            
+            .category-description {
+                font-size: var(--font-size-md);
+            }
+            
+            .shop-card {
+                padding: var(--space-20);
+            }
+            
+            .shop-card h4 {
+                font-size: var(--font-size-md);
+            }
+        }

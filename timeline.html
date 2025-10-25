@@ -1,0 +1,71 @@
+
+<!---->
+<!-- CSS Timeline -->
+<style>
+.timeline {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 0;
+  position: relative;
+  padding-left: 30px;
+}
+.timeline-event {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  position: relative;
+}
+.timeline-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  border: 3px solid #fff;
+  margin-right: 12px;
+  z-index: 2;
+}
+.timeline-content {
+  background: var(--color-ivory-light);
+  padding: 12px 28px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #ffd2c4;
+}
+.timeline:before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(var(--color-gold), var(--color-o));
+  z-index: 1;
+}
+</style>
+
+<!-- HTML Timeline -->
+<div class="timeline">
+  <div class="timeline-event">
+    <div class="timeline-dot"></div>
+    <div class="timeline-content">
+      <b>19:00</b> Bienvenida
+    </div>
+  </div>
+  <div class="timeline-event">
+    <div class="timeline-dot"></div>
+    <div class="timeline-content">
+      <b>20:00</b> Ceremonia
+    </div>
+  </div>
+  <div class="timeline-event">
+    <div class="timeline-dot"></div>
+    <div class="timeline-content">
+      <b>21:00</b> Cóctel
+    </div>
+  </div>
+  <div class="timeline-event">
+    <div class="timeline-dot"></div>
+    <div class="timeline-content">
+      <b>22:00</b> Banquete
+    </div>
+  </div>
+</div>
