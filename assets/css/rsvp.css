@@ -1,0 +1,143 @@
+
+        /* Companion fields styling */
+        .companion-group {
+            background-color: var(--color-bg-8);
+            padding: var(--space-24);
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-20);
+            border: 1px solid var(--color-card-border);
+        }
+
+        .companion-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .companion-group .form-label {
+            color: var(--color-slate-900);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        /* RSVP Form */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--color-surface);
+            padding: var(--space-48);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-card-border);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-24);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-8);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-slate-900);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: var(--space-12) var(--space-16);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-md);
+            font-family: var(--font-family-base);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-focus-ring);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: var(--space-20);
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .btn {
+            background-color: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            border: none;
+            padding: var(--space-16) var(--space-32);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-md);
+            font-weight: var(--font-weight-medium);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: var(--color-primary-hover);
+        }
+
+        /* Success message */
+        .success-message {
+            background-color: var(--color-bg-3);
+            border: 1px solid rgba(var(--color-success-rgb), 0.3);
+            color: var(--color-success);
+            padding: var(--space-16);
+            border-radius: var(--radius-base);
+            margin-top: var(--space-16);
+            display: none;
+        }
+
+        /* Custom Leaflet popup styling */
+        .custom-popup {
+            font-family: var(--font-family-base);
+        }
+
+        .custom-popup h4 {
+            font-family: var(--font-family-display);
+            color: var(--color-slate-900);
+            margin-bottom: var(--space-8);
+        }
+
+        .custom-popup p {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-4);
+            font-size: var(--font-size-sm);
+        }
+
+
+.boton-rsvp {
+  background: linear-gradient(90deg, var(--color-gold) 0%, var(--color-gold) 100%);
+  color: #fff;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 4px 20px rgba(255, 114, 177, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: pulse 1.3s infinite alternate;
+}
+@keyframes pulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.05); }
+}
+.boton-rsvp:hover {
+  box-shadow: 0 6px 30px rgba(255,114,177,0.35);
+  transform: scale(1.08);
+  opacity: 0.92;
+}

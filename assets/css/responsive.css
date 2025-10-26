@@ -1,0 +1,132 @@
+    /* Responsive Design */
+        @media (max-width: 768px) {
+            .navigation {
+                padding: var(--space-12) 0;
+            }
+
+            .nav-menu {
+                gap: var(--space-16);
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-link {
+                padding: var(--space-8) var(--space-12);
+                font-size: var(--font-size-sm);
+            }
+
+            .couple-names {
+                font-size: var(--font-size-4xl);
+            }
+
+            .venue-grid,
+            .attire-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-32);
+            }
+            
+            .attire-text-section {
+                margin-bottom: var(--space-32);
+                padding: var(--space-24);
+            }
+            
+            .attire-carousel-panel {
+                padding: var(--space-24);
+            }
+
+            .schedule {
+                gap: var(--space-20);
+            }
+
+            .attire-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-container {
+                padding: var(--space-32);
+                margin: 0 var(--space-16);
+            }
+
+            .transport-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-24);
+            }
+
+            .transport-card {
+                padding: var(--space-24);
+            }
+
+            .special-transport-card {
+                padding: var(--space-32);
+                margin: 0 var(--space-16);
+            }
+
+            .special-title {
+                font-size: var(--font-size-2xl);
+            }
+
+            .special-description {
+                font-size: var(--font-size-md);
+            }
+
+            #venue-map {
+                height: 300px;
+            }
+
+            .map-header {
+                padding: var(--space-16);
+            }
+
+            .map-title {
+                font-size: var(--font-size-lg);
+            }
+        }
+
+        /* Responsive styles for accommodation section */
+        @media (max-width: 768px) {
+            #accommodation .container > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                gap: var(--space-32) !important;
+            }
+            
+            #accommodation table {
+                font-size: var(--font-size-xs) !important;
+            }
+            
+            #accommodation th, #accommodation td {
+                padding: var(--space-8) !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .couple-names {
+                font-size: var(--font-size-4xl);
+            }
+
+            .schedule {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--space-16);
+            }
+
+            .radio-group {
+                flex-direction: column;
+            }
+        }
+
+        
+ /* Ajustes para móviles muy estrechos donde el menú ocupa más alto */
+       @media (max-width: 400px) {
+           body {
+               padding-top: 110px;
+           }
+           .section {
+               scroll-margin-top: 120px;
+           }
+           /* reduce el padding lateral del nav para evitar salto de línea */
+           .navigation .nav-container {
+               padding-left: var(--space-12);
+               padding-right: var(--space-12);
+           }
+       }

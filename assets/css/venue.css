@@ -1,0 +1,94 @@
+
+
+
+        /* Venue Section */
+        .venue-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-48);
+            margin-bottom: var(--space-48);
+        }
+
+        .venue-info-card {
+            background-color: var(--color-surface);
+            padding: var(--space-32);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-card-border);
+        }
+
+        .venue-details {
+            margin-bottom: var(--space-24);
+        }
+
+        .venue-details h3 {
+            color: var(--color-slate-900);
+            margin-bottom: var(--space-12);
+        }
+
+        .venue-details p {
+            margin-bottom: var(--space-12);
+            line-height: 1.6;
+        }
+
+        /* Map Styles */
+        .map-container {
+            margin: var(--space-48) 0;
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-card-border);
+        }
+
+        .map-header {
+            padding: var(--space-24);
+            background-color: var(--color-bg-8);
+            border-bottom: 1px solid var(--color-card-border-inner);
+        }
+
+        .map-title {
+            font-family: var(--font-family-display);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-slate-900);
+            margin-bottom: var(--space-8);
+        }
+
+        .map-subtitle {
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-md);
+        }
+
+        #venue-map {
+            height: 400px;
+            width: 100%;
+        }
+
+         .contact-info {
+            background-color: var(--color-bg-2);
+            padding: var(--space-20);
+            border-radius: var(--radius-base);
+            margin-top: var(--space-20);
+        }
+
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-20);
+            margin-top: var(--space-32);
+        }
+
+        .gallery-item {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
