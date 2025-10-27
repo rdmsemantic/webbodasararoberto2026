@@ -398,3 +398,27 @@
                 }
             });
             });
+
+
+
+            // Agrega a scripts.js
+document.querySelectorAll('.image-carousel').forEach(carousel => {
+  const fullscreenBtn = document.createElement('button');
+  fullscreenBtn.className = 'carousel-fullscreen-btn';
+  fullscreenBtn.innerHTML = '⛶'; // icono pantalla completa
+  fullscreenBtn.style.position = 'absolute';
+  fullscreenBtn.style.top = '16px';
+  fullscreenBtn.style.right = '16px';
+  fullscreenBtn.style.zIndex = '20';
+  fullscreenBtn.style.background = 'rgba(255,255,255,0.8)';
+  fullscreenBtn.style.border = 'none';
+  fullscreenBtn.style.fontSize = '1.5em';
+  fullscreenBtn.style.cursor = 'pointer';
+
+  carousel.appendChild(fullscreenBtn);
+
+  fullscreenBtn.addEventListener('click', () => {
+    carousel.classList.toggle('fullscreen');
+    document.body.style.overflow = carousel.classList.contains('fullscreen') ? 'hidden' : '';
+  });
+});
