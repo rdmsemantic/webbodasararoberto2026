@@ -1,0 +1,207 @@
+.dance-section {
+  padding: 110px 0;
+  background:
+    linear-gradient(180deg, #fcfaf7 0%, #f6f0ea 100%);
+}
+
+.dance-shell {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.section-eyebrow {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #a8836a;
+}
+
+.dance-section .section-title {
+  margin-bottom: 42px;
+  text-align: center;
+}
+
+.dance-card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(140, 106, 84, 0.16);
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(96, 65, 49, 0.10);
+  padding: 42px;
+  backdrop-filter: blur(8px);
+}
+
+.dance-intro {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+
+.dance-icon {
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f7e8dc 0%, #f1dbcb 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.dance-copy {
+  color: #4f3b31;
+}
+
+.dance-lead {
+  margin: 0 0 14px;
+  font-size: 1.18rem;
+  line-height: 1.85;
+}
+
+.dance-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #6d5649;
+}
+
+.dance-media {
+  margin: 34px 0 28px;
+}
+
+.dance-video-wrap {
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(140, 106, 84, 0.14);
+  background: #efe6df;
+  box-shadow: 0 14px 34px rgba(84, 58, 46, 0.12);
+}
+
+.dance-video {
+  display: block;
+  width: 100%;
+  max-height: 620px;
+  background: #000;
+}
+
+.dance-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.dance-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.dance-button-primary {
+  background: #8f5f49;
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(143, 95, 73, 0.22);
+}
+
+.dance-button-primary:hover {
+  background: #7d503d;
+  transform: translateY(-2px);
+}
+
+.dance-button-secondary {
+  background: transparent;
+  color: #7d503d;
+  border: 1px solid rgba(125, 80, 61, 0.28);
+}
+
+.dance-button-secondary:hover {
+  background: rgba(143, 95, 73, 0.08);
+  transform: translateY(-2px);
+}
+
+.dance-note-box {
+  margin-top: 6px;
+  padding: 22px 24px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(249, 242, 236, 0.95) 0%, rgba(245, 235, 228, 0.95) 100%);
+  border: 1px solid rgba(140, 106, 84, 0.12);
+}
+
+.dance-note-title {
+  margin: 0 0 8px;
+  font-size: 1.02rem;
+  color: #5f4336;
+}
+
+.dance-note-text {
+  margin: 0;
+  color: #6d5649;
+  line-height: 1.8;
+}
+
+.dance-reference {
+  margin: 22px 0 0;
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: #7a6357;
+}
+
+.dance-reference a {
+  color: #8f5f49;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.dance-reference a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .dance-section {
+    padding: 80px 0;
+  }
+
+  .dance-card {
+    padding: 26px 20px;
+    border-radius: 22px;
+  }
+
+  .dance-intro {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .dance-icon {
+    width: 74px;
+    height: 74px;
+    font-size: 2rem;
+    margin: 0 auto;
+  }
+
+  .dance-copy {
+    text-align: center;
+  }
+
+  .dance-lead {
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .dance-actions {
+    flex-direction: column;
+  }
+
+  .dance-button {
+    width: 100%;
+  }
+}
